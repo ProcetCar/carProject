@@ -9,8 +9,5 @@ public class Signup {
 	public boolean run(int p) {
         return p == 1;
     }
-	public void add(String username,String password,String email,String age) {
-		userlist.add(new User(username,email,password,"customer",age));	
-	      User.userList.add(new User(username,email,password,"customer",age));
-			}
+	
 }

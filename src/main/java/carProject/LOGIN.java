@@ -11,7 +11,8 @@ public class LOGIN {
 	    private String enteredPassword;
 	    private static String tyu = "";
 		 static Logger logger =  Logger.getLogger(LOGIN.class.getName());
-		   private  List<User> userlist=User.list();
+		 private static Mydata data=new Mydata();
+		  private static  List<User> userlist=Mydata.listUser();
 
 	public boolean run(int p) {
         return p == 1;
@@ -20,6 +21,8 @@ public class LOGIN {
 	public void navigateToLoginPage(String email, String password) {
 		   enteredPassword=password;
       	  enteredEmail=email;
+      	  if(ifvalid(enteredEmail)) {
+      		 
       	    if (performLogin(enteredEmail, enteredPassword)) {
       	        logger.info("Login successful.");
       	       logger.info("\n");
@@ -27,10 +30,15 @@ public class LOGIN {
       	    } else {
       	    	logger.info("Invalid email or password. Please try again.");
       	    }
+      	    }
+      	  else {
+    	logger.info("Invalid email. Please try again.");
+      	  }
          
 	}
 
 	public boolean performLogin(String email, String password) {
+		
 		  for (User userr : userlist) {
 	            if (userr.getEmail().equals(email) && userr.getPassword().equals(password)  ) {
 	                tyu = userr.gettype();
@@ -68,7 +76,7 @@ public class LOGIN {
 		
 
 		public boolean ifvalid(String string) {
-			if(string.equals("")){
+			if(string.equals("") || !string.contains("@gmail.com") ){
 				return false;
 			}
 			return true;

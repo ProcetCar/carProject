@@ -41,7 +41,7 @@ public void i_enter_a_valid_age_as_a(String string) {
 
 @Then("I should be registered successfully")
 public void i_should_be_registered_successfully() {
-	
+	Assert.assertFalse(lo.checkIfRegister(email));
 }
 
 @Given("a user is already registered")
@@ -92,5 +92,14 @@ public void i_should_see_an_error_message_for_a_missing_email() {
 public void i_should_see_an_error_message_for_a_missing_age() {
 	Assert.assertFalse(lo.ifvalid(age));
 
+}
+@When("i enter a invalid email {string}")
+public void i_enter_a_invalid_email(String string) {
+	email=string;
+}
+
+@Then("I should see an error message for a ivalid email")
+public void i_should_see_an_error_message_for_a_ivalid_email() {
+	Assert.assertFalse(lo.ifvalid(email));
 }
 }

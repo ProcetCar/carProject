@@ -4,13 +4,13 @@ Feature: User Signup
     Given I am on the signup page
     When I enter a valid username as a  "ali"
     And I enter a valid password as a "password4"
-    And I enter a valid email as a "example4@example.com"
+    And I enter a valid email as a "example4@gmail.com"
     And I enter a valid age as a "20"
     Then I should be registered successfully
 
   Scenario: user Already Registered
     Given a user is already registered
-    When I enter the same email "example1@example.com"
+    When I enter the same email "example1@gmail.com"
     And I click the signup button
     Then I should see an error message for a user already registered
 
@@ -18,7 +18,7 @@ Feature: User Signup
     Given I am on the signup page
     When I enter a username as a ""
     And I enter a valid password as a "password4"
-    And I enter a valid email as a "example4@example.com"
+    And I enter a valid email as a "example4@gmail.com"
    And I enter a valid age as a "19"
     And I click the signup button
     Then I should see an error message for a missing username
@@ -27,7 +27,7 @@ Feature: User Signup
     Given I am on the signup page
     When I enter a username as a "ali"
     And I enter a  password as a ""
-    And I enter a valid email as a "example4@example.com"
+    And I enter a valid email as a "example4@gmail.com"
    And I enter a valid age as a "19"
     And I click the signup button
     Then I should see an error message for a missing password
@@ -47,7 +47,14 @@ Feature: User Signup
      Given I am on the signup page
     When I enter a username as a "ali"
     And I enter a valid password as a "password4"
-    And I enter a valid email as a "example4@example.com"
+    And I enter a valid email as a "example4@gmail.com"
    And I enter a valid age as a ""
     And I click the signup button
     Then I should see an error message for a missing age
+    
+    Scenario: invalid email
+    Given I am on the signup page
+    When i enter a invalid email "example.com"
+    And I click the signup button
+    Then I should see an error message for a ivalid email
+    
