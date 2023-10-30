@@ -1,6 +1,7 @@
 package carProject;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -10,34 +11,32 @@ public class LOGIN {
 	    private String enteredEmail;
 	    private String enteredPassword;
 	    private static String tyu = "";
-		 static Logger logger =  Logger.getLogger(LOGIN.class.getName());
 		 private static Mydata data=new Mydata();
-		  private static  List<User> userlist=Mydata.listUser();
+		  private static  List<User> userlist=new ArrayList<User>();
 
 	public boolean run(int p) {
         return p == 1;
     }
 
-	public void navigateToLoginPage(String email, String password) {
+	public void navigateToLoginPage(String email, String password,List<User> userlist) {
 		   enteredPassword=password;
       	  enteredEmail=email;
-      	  if(ifvalid(enteredEmail)) {
+      	  
       		 
-      	    if (performLogin(enteredEmail, enteredPassword)) {
-      	        logger.info("Login successful.");
-      	       logger.info("\n");
-      	      logger.info("\n");
-      	    } else {
-      	    	logger.info("Invalid email or password. Please try again.");
+      	    if (performLogin(enteredEmail, enteredPassword,userlist)) {
+      	    	System.out.println("Login successful.");
+      	    	System.out.println("\n");
+      	    	System.out.println("\n");
       	    }
+      	    else {
+      	    	System.out.println("Invalid email or password. Please try again.");
+      	    
       	    }
-      	  else {
-    	logger.info("Invalid email. Please try again.");
-      	  }
+      	  
          
 	}
 
-	public boolean performLogin(String email, String password) {
+	public boolean performLogin(String email, String password,List<User> userlist) {
 		
 		  for (User userr : userlist) {
 	            if (userr.getEmail().equals(email) && userr.getPassword().equals(password)  ) {
@@ -63,7 +62,7 @@ public class LOGIN {
 	        return tyu.equals("customer");
 	    }
 
-		public boolean checkIfRegister(String email) {
+		public boolean checkIfRegister(String email,List<User> userlist) {
 			for (User userr : userlist) {
 	            if (userr.getEmail().equals(email)) {
 	                return true;
@@ -77,6 +76,7 @@ public class LOGIN {
 
 		public boolean ifvalid(String string) {
 			if(string.equals("") || !string.contains("@gmail.com") ){
+				System.out.println("invalid email please try again...");
 				return false;
 			}
 			return true;

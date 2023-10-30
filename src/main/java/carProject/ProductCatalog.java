@@ -3,62 +3,24 @@ package carProject;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ProductCatalog {
    
 
-	// List to store products
     private List<Product> products=new ArrayList<Product>();
     
     public ProductCatalog() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-    // Constructor to initialize the list of products
-    public ProductCatalog(List<Product> products) {
-        this.products = products;
-    }
+    
 
 
-	// Method to add a new product to the catalog
-    public void addProduct(Product product) {
-        products.add(product);
-    }
 
-    // Method to update product information
-    public void updateProduct(Product product) {
-        // Implementation to update product information
-    }
+    
 
-    // Method to delete a product from the catalog
-    public void deleteProduct(String productName) {
-    	for (Product product : products) {
-            if (product.getName().equals(productName)) {
-                products.remove(product);
-            }
-        }
-    }
 
-    // Method to get a list of products in a specific category
-    public List<Product> getProductsByCategory(String category) {
-    	  List<Product> productsInCategory = new ArrayList<Product>();
-          for (Product product : products) {
-              if (product.getCategory().equalsIgnoreCase(category)) {
-                  productsInCategory.add(product);
-              }
-          }
-          return productsInCategory;
-    }
-
-    // Method to retrieve detailed information about a product
-    public Product getProductDetails(String  productName) {
-    	  for (Product product : products) {
-              if (product.getName().equalsIgnoreCase(productName)) {
-                  return product;
-              }
-          }
-          return null; // Product not found
-      }
+      
 	public boolean isexsist(List<Product> productlist, String string) {
 		String productname=string;
 		String productcategory=string;
@@ -84,11 +46,16 @@ public class ProductCatalog {
 		
 	}
 	public List<Product> deleteproducts(List<Product> productlist, String string) {
-		 for (Product product : productlist) {
+		 int i=0;
+		for (Product product : productlist) {
              if (product.getName().equals(string)) {
             	 productlist.remove(product);
             	 break;
              }
+         }
+		 for (Product product : productlist) {
+           i++;
+           product.setid(i);
          }
 				return productlist;
 	}
@@ -103,27 +70,157 @@ public class ProductCatalog {
 				return productlist;
 	}
 	public void printproducts(List<Product> productlist) {
+      	 System.out.println("==================================================================");
+
 		 for (Product product : productlist) {
 
-	         String s=product.getName()+","+product.getCategory();
-	        		 
-	            	 System.out.println(s);
-	             
-	         }		
+                  
+	        // String s=String.valueOf(product.getid())+". "+"product name: "+product.getName()+", "+"product Description: "+product.getDescription()+", "+"product Category: "+product.getCategory()+", "+"product price: "+product.getPrice()+", "+"product Available: "+product.getAvailable();
+	            	String s=String.valueOf(product.getid())+". "+"product name: "+product.getName();
+			 System.out.println(s);
+	            
+	         }	
+       	 System.out.println("==================================================================");
+
 	}
-	public List<Product> removeRepeated(List<Product> productlist) {
-        HashSet<Product> uniqueSet = new HashSet<>();
-
-        List<Product> uniqueList = new ArrayList<>();
-
-        for (Product item : productlist) {
-            if (uniqueSet.add(item)) {
-                uniqueList.add(item);
-            }
+	public int countProducts(List<Product> productlist) {
+		int i=0;
+		 for (Product product : productlist) {
+           i++;       
         }
-        return productlist;
-        
+		 i++;
+		return i;
 	}
+
+
+
+
+
+
+
+
+	public void viewproductCategory(List<Product> productlist, String category) {
+     	 System.out.println("==================================================================");
+
+		for (Product product : productlist) {
+           if(product.getCategory().equals(category)) {
+        	  // String s=String.valueOf(product.getid())+". "+"product name: "+product.getName()+", "+"product Description: "+product.getDescription()+", "+"product Category: "+product.getCategory()+", "+"product price: "+product.getPrice()+", "+"product Available: "+product.getAvailable();
+          	  String s=String.valueOf(product.getid())+". "+"product name: "+product.getName();
+        	   System.out.println(s);
+}
+		}
+     	 System.out.println("==================================================================");
+
+			
+	}
+	
+
+
+
+
+
+
+
+
+	public String[] printcategory(List<Product> productlist) {
+        Set<String> uniqueCategories = new HashSet<>();
+        for (Product product : productlist) {
+            uniqueCategories.add(product.getCategory());
+        }
+      System.out.println("==================================================================");
+  	String[] cate = new String[3];
+int i=0;
+int j=i+1;
+        for (String category : uniqueCategories) {
+        	System.out.print(j+". ");
+            System.out.println(category);
+            cate[i]=category;
+            i++;
+            j=i+1;
+        }
+      System.out.println("==================================================================");
+
+		return cate;
+	}
+
+
+
+
+
+
+
+	public List<Product> searchcategory(List<Product> productlist, String category) {
+	    List<Product> productlist2=new ArrayList<Product>();
+
+		for (Product product : productlist) {
+			if(product.getCategory().equals(category)) {
+				
+				productlist2.add(product);
+			}
+        }
+		int i=1;
+		for (Product product : productlist2) {
+			product.setid(i);
+			i++;
+        }
+		
+		
+		return productlist2;
+	}
+	public  void searchproduct(List<Product> productlist, int id) {
+
+		for (Product product : productlist) {
+			if(product.getid()==id) {
+				 System.out.println("Name: " + product.getName());
+			        System.out.println("Description: " + product.getDescription());
+			        System.out.println("Category: " + product.getCategory());
+			        System.out.println("Price: " + product.getPrice());
+			        System.out.println("Availability: " + product.getAvailable());
+			        break;
+			}
+        }
+		
+	}
+
+
+
+
+
+
+
+
+	public double totalprice(List<Product> orderedProducts) {
+double sum=0;
+for (Product product : orderedProducts) {
+	sum=product.getPrice()+sum;
+}
+		return sum;
+	}
+
+
+
+
+
+
+
+
+	public int searchproductname(List<Product> productlist, String nameproduct) {
+		int id = 0;
+		for (Product product : productlist) {
+		   
+			if(product.getName().equals(nameproduct)) {
+               id=product.getid();
+				 System.out.println("Name: " + product.getName());
+			        System.out.println("Description: " + product.getDescription());
+			        System.out.println("Category: " + product.getCategory());
+			        System.out.println("Price: " + product.getPrice());
+			        System.out.println("Availability: " + product.getAvailable());
+			        break;
+			}
+		}
+		return id;
+	}
+	
 	
 }
 

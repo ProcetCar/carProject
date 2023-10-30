@@ -7,6 +7,7 @@ import org.junit.Assert;
 
 
 public class Logoutsteps {
+	
 	public LOGIN lo=new LOGIN();
 
 	@Given("I want to log out")
@@ -23,4 +24,5 @@ public class Logoutsteps {
 	public void the_login_page_will_appear() {
 	   Assert.assertTrue(lo.run(1));
 	}
+	
 }

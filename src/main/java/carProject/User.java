@@ -7,15 +7,17 @@ import java.util.logging.Logger;
 
 public class User {
 private LOGIN lo=new LOGIN();
-   private static Mydata data=new Mydata();
-	  private static  List<User> userList=Mydata.listUser();  
+	  private  List<User> userList=new ArrayList<User>();  
+
 private String name;
+private int id;
    private String email;
    private String password;
 	private String type;
 	private String age;
-	public User(String name,String email, String password , String type,String age) {
-       this.name=name;
+	public User(int id,String name,String email, String password , String type,String age) {
+       this.id=id;
+		this.name=name;
    	this.email = email;
        this.password = password;
        this.type = type;
@@ -27,7 +29,9 @@ private String name;
 public String getName() {
        return name;
    }
-  
+public int getid() {
+    return id;
+}
    
    public String getEmail() {
        return email;
@@ -46,26 +50,36 @@ public String getName() {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public void setid(int id) {
+		this.id = id;
+	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	public  List<User> getUserList() {
+		return userList;
+	}
+	public  void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
 
-	public List<User> add(String username,String password,String email,String age) {
-        Logger logger =  Logger.getLogger(User.class.getName());
-          if(lo.ifvalid(email)) {
-        	  if(lo.checkIfRegister(email)) {
-              logger.info(" you  alredy registerd ");  
+	public List<User> add(String username,String password,String email,String age,List<User> userList) {
+         int i=countUsers(userList);
+         
+		if(lo.ifvalid(email)) {
+        	  if(lo.checkIfRegister(email,userList)) {
+        		  System.out.println(" you  alredy registerd ");  
             }
         	  else {    	  
-            logger.info(" you  register successfully");
-    		userList.add(new User(username,email,password,"customer",age));	
+        		  System.out.println(" you  register successfully");
+    		userList.add(new User(i,username,email,password,"customer",age));	
         	  }
         	  }
           else {
-          	logger.info("Invalid email. Please try again.");
+        	  System.out.println("Invalid email. Please try again.");
           }
-         data.setUserList(userList);
+          setUserList(userList);
 	      return userList;
 
 }
@@ -84,10 +98,10 @@ public String getName() {
         }
         return false;	
 	}
-	public List<User> updateUser(List<User> userlist,String username,String email,String password,String age,String type) {
+	public List<User> updateUser(List<User> userList,int id,String username,String email,String password,String age,String type) {
 
-		       for (User user : userlist) {
-		             if (user.getName().equals(username)) {
+		       for (User user : userList) {
+		             if (user.getid()==id) {
 		            	 user.setName(username);
 		            	 user.setEmail(email);
 		            	 user.setAge(age);
@@ -95,32 +109,82 @@ public String getName() {
 		            	 user.setPassword(password);
 		             }
 		         }
-		          return userlist;
+		          setUserList(userList);
+System.out.println("=======================updated successfully============");
+		          return userList;
 	}
 	
 	public void setType(String type) {
      this.type=type;		
 	}
-	public List<User> deleteuser(List<User> userlist, String string) {
-		 for (User user : userlist) {
+	public List<User> deleteuser(List<User> userList, String string) {
+		int i=1;
+		for (User user : userList) {
              if (user.getName().equals(string)) {
-            	 userlist.remove(user);
+            	 userList.remove(user);
             	 break;
              }
          }
-				return userlist;
-				}
-	public void printUsers(List<User> userlist) {
-	     for (User user : userlist) {
-
-         String s=user.getName()+","+user.getEmail()+","+user.getAge()+","+user.gettype();
-            	 System.out.println(s);
-             
+		 for (User user : userList) {
+            user.setid(i);
+            i++;
          }
+         setUserList(userList);
+
+		
+		 return userList;
+				}
+	public void printUsers(List<User> userList) {
+      	 System.out.println("==================================================================");
+
+	     for (User user : userList) {
+
+         String s=String.valueOf(user.getid())+". "+user.getName()+","+user.getEmail()+","+user.getAge()+","+user.gettype();
+            	 System.out.println(s);
+
+         }
+       	 System.out.println("==================================================================");
+
 }
-	
+	public void viewprofile(String email,List<User> userList) {
+      	 System.out.println("==================================================================");
+
+		for (User user : userList) {
+            if (user.getEmail().equals(email)) {
+            	
+            	 System.out.println("username: "+user.getName());
+            	 System.out.println("email: "+user.getEmail());
+            	 System.out.println("password: "+user.getPassword());
+            	 System.out.println("Age: "+user.getAge());
+            	 //System.out.println("Type: "+user.gettype());
+            }
+            
+        }
+      	 System.out.println("==================================================================");
+
+		
+	}
+	public int countUsers(List<User> userList) {
+		int i=0;
+		for (User user : userList) {
+           i++;       
+        }
+		i++;
+		return i;
+	}
+	public User informationUser(List<User> userList,String email) {
+		
+
+		for (User user : userList) {
+            if (user.getEmail().equals(email)) {
+            return user;	  
+            
+            }
+            
+        }
+		return null;
 	
 	}
 
-
+}
 

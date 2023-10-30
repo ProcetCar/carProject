@@ -11,6 +11,7 @@ import org.junit.Assert;
 
 
 public class AdminRoleSteps {
+	
 	private static  List<User> userlist=Mydata.listUser();
 	private static  List<Product> productlist=Mydata.listProduct();
 	private static ProductCatalog pc=new ProductCatalog();
@@ -36,7 +37,8 @@ String email,username,password,age,type;
 	            String price = row.get("Price");
 	            String category = row.get("category");
 	            String available = row.get("available");
-         Product p=new Product(productName,description,Double.valueOf(price),category,available);
+	           int i= pc.countProducts(productlist);
+         Product p=new Product(i,productName,description,Double.valueOf(price),category,available);
      		productlist.add(p);
 
 	           
@@ -113,7 +115,8 @@ String email,username,password,age,type;
             type=row.get("type");
             age=row.get("age");
 	}
-		 User e=new User(username,email,password,type,age);
+		int i= user.countUsers(userlist);
+		 User e=new User(i,username,email,password,type,age);
 		userlist.add(e);
 		
 	}
@@ -128,7 +131,7 @@ String email,username,password,age,type;
 		for (Map<String, String> row : dataTable) {
              email=row.get("Email");
 	}
-		userlist=user.updateUser(userlist,string,email,password,age,type);
+		userlist=user.updateUser(userlist,4,string,email,password,age,type);
 		
 	
 	}
@@ -142,6 +145,7 @@ String email,username,password,age,type;
 	        	   updateEmail = user.getEmail();
 	        	   }
 	       }
+		  
     Assert.assertEquals(updateEmail,"updated@example.com");	
 	         
 	       
@@ -156,4 +160,5 @@ String email,username,password,age,type;
 	public void the_user_account_should_be_deleted_successfully() {	
 		Assert.assertFalse(user.isexsist(userlist, username));
 	}
+	
 }

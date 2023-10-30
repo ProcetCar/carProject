@@ -1,5 +1,7 @@
 package carProject;
 
+import java.util.List;
+
 import org.junit.Assert;
 
 import io.cucumber.java.en.Given;
@@ -7,12 +9,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class signupsteps {
+	
 	public Signup signup=new Signup();
 	public static String email;
 	public static String password;
 	public static String username;
 	public static String age;
 	public LOGIN lo=new LOGIN();
+ private static  List<User> userlist=Mydata.listUser();
+
 
 @Given("I am on the signup page")
 public void i_am_on_the_signup_page() {
@@ -41,7 +46,9 @@ public void i_enter_a_valid_age_as_a(String string) {
 
 @Then("I should be registered successfully")
 public void i_should_be_registered_successfully() {
-	Assert.assertFalse(lo.checkIfRegister(email));
+	User e=new User(1,username,email,password,"customer",age);
+	userlist.add(e);
+	Assert.assertTrue(lo.checkIfRegister(email,userlist));
 }
 
 @Given("a user is already registered")
@@ -59,7 +66,7 @@ public void i_click_the_signup_button() {
 
 @Then("I should see an error message for a user already registered")
 public void i_should_see_an_error_message_for_a_user_already_registered() {
-	Assert.assertTrue(lo.checkIfRegister(email));
+	Assert.assertTrue(lo.checkIfRegister(email,userlist));
 }
 
 @When("I enter a username as a {string}")
@@ -102,4 +109,5 @@ public void i_enter_a_invalid_email(String string) {
 public void i_should_see_an_error_message_for_a_ivalid_email() {
 	Assert.assertFalse(lo.ifvalid(email));
 }
+
 }

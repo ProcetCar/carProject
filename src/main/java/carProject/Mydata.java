@@ -21,9 +21,9 @@ public class Mydata {
 
 	
 	public static   List<User> listUser(){
-	    userList.add(new User("Lama","example1@gmail.com", "password1" ,"customer", "18"));
-        userList.add(new User("Ibtissam","example2@gmail.com", "password2" ,"installer", "27"));
-        userList.add(new User("Sami","example3@gmail.com", "password3" ,"Admin"," 21"));
+	    userList.add(new User(1,"Lama","example1@gmail.com", "password1" ,"customer", "18"));
+        userList.add(new User(2,"Ibtissam","example2@gmail.com", "password2" ,"installer", "27"));
+        userList.add(new User(3,"Sami","example3@gmail.com", "password3" ,"Admin"," 21"));
         
             return userList;
        }
@@ -32,19 +32,19 @@ public class Mydata {
 	
 	public static   List<Product> listProduct(){
 
-	        products.add(new Product("Car Seat Cover",
+	        products.add(new Product(1,"Car Seat Cover",
 	                "High-quality seat cover for cars",
 	                49.99,
 	                "Interior",
 	                "available"));
 
-	        products.add(new Product("Car GPS Navigation System",
+	        products.add(new Product(2,"Car GPS Navigation System",
 	                "Advanced GPS navigation system for cars",
 	                199.99,
 	                "Electronics",
 	                "available"));
 
-	        products.add(new Product("Alloy Wheels",
+	        products.add(new Product(3,"Alloy Wheels",
 	                "Set of 4 stylish alloy wheels",
 	                249.99,
 	                "Exterior",
@@ -52,7 +52,7 @@ public class Mydata {
 
 	        
 
-	        products.add(new Product("Car Audio System",
+	        products.add(new Product(4,"Car Audio System",
 	                "Premium car audio system with Bluetooth connectivity",
 	                299.99,
 	                "Electronics",

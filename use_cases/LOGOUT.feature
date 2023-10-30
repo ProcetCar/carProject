@@ -1,4 +1,4 @@
-Feature: kog out
+Feature: log out
 
 Scenario: I finished my role as a user
 Given I want to log out

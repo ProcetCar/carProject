@@ -1,5 +1,7 @@
 package carProject;
 
+import java.util.List;
+
 import org.junit.Assert;
 
 import io.cucumber.java.en.Given;
@@ -7,9 +9,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class loginsteps {
-	public static String Email;
-	public static String Password;
-	public LOGIN lo=new LOGIN();
+	
+	private static String Email;
+	private static String Password;
+	private LOGIN lo=new LOGIN();
+   private static  List<User> userlist=Mydata.listUser();
+
 	@Given("I choose to exit instead of log in")
 	public void i_choose_to_exit_instead_of_log_in() {
 	}
@@ -37,7 +42,7 @@ public class loginsteps {
 
 	@Then("A login succeded message should appear")
 	public void a_login_succeded_message_should_appear() {
-		Assert.assertTrue(lo.performLogin(Email, Password));
+		Assert.assertTrue(lo.performLogin(Email, Password,userlist));
 
 	}
 
@@ -65,7 +70,7 @@ public class loginsteps {
 
 	@Then("A login succeded message should appearr")
 	public void a_login_succeded_message_should_appearr() {
-		Assert.assertTrue(lo.performLogin(Email, Password));
+		Assert.assertTrue(lo.performLogin(Email, Password,userlist));
 
 	}
 
@@ -91,7 +96,7 @@ Password=string;
 
 	@Then("A login succeded message should appearrr")
 	public void a_login_succeded_message_should_appearrr() {
-	Assert.assertTrue(lo.performLogin(Email, Password));
+	Assert.assertTrue(lo.performLogin(Email, Password,userlist));
 
 	}
 
@@ -115,7 +120,8 @@ Password=string;
 
 	@Then("An error message succeded message should appear")
 	public void an_error_message_succeded_message_should_appear() {
-		Assert.assertFalse(lo.performLogin(Email, Password));
+		Assert.assertFalse(lo.performLogin(Email, Password,userlist));
 
 	}
+	
 }
