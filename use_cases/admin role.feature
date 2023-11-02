@@ -1,6 +1,5 @@
 Feature: Admin Role
 
- 
   Scenario: Admin manages products
     When the admin selects the "Manage Products" option
     And the admin adds a new product with the following details:

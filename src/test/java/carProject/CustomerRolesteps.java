@@ -248,6 +248,7 @@ public void click(String string) {
 @Then("their profile information should be updated successfully")
 public void their_profile_information_should_be_updated_successfully() {
 	user=user.informationUser(userList, email2);
+	user.searchuser(userList, user.getName());
 	Assert.assertEquals(user.getEmail(), email2);
     
 }

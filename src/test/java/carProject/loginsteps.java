@@ -42,6 +42,7 @@ public class loginsteps {
 
 	@Then("A login succeded message should appear")
 	public void a_login_succeded_message_should_appear() {
+		System.out.println("login successfully as customer");
 		Assert.assertTrue(lo.performLogin(Email, Password,userlist));
 
 	}
@@ -70,6 +71,8 @@ public class loginsteps {
 
 	@Then("A login succeded message should appearr")
 	public void a_login_succeded_message_should_appearr() {
+		System.out.println("login successfully as installer");
+
 		Assert.assertTrue(lo.performLogin(Email, Password,userlist));
 
 	}
@@ -95,7 +98,10 @@ Password=string;
 }
 
 	@Then("A login succeded message should appearrr")
-	public void a_login_succeded_message_should_appearrr() {
+	public void a_login_succeded_message_should_appearrr()
+{
+		System.out.println("login successfully as admin");
+
 	Assert.assertTrue(lo.performLogin(Email, Password,userlist));
 
 	}
@@ -120,6 +126,7 @@ Password=string;
 
 	@Then("An error message succeded message should appear")
 	public void an_error_message_succeded_message_should_appear() {
+		System.out.println("you are not login please register before login");
 		Assert.assertFalse(lo.performLogin(Email, Password,userlist));
 
 	}

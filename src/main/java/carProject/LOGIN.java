@@ -76,7 +76,7 @@ public class LOGIN {
 
 		public boolean ifvalid(String string) {
 			if(string.equals("") || !string.contains("@gmail.com") ){
-				System.out.println("invalid email please try again...");
+				System.out.println("invalid  please try again...");
 				return false;
 			}
 			return true;

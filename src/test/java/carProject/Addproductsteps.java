@@ -39,7 +39,7 @@ public class Addproductsteps {
 	public void the_product_should_be_added() {
 		boolean g=pc.isexsist(productlist,productName);
 	     Assert.assertTrue(g);
-	   
+	   pc.printproducts(productlist);
 	}
 
 }

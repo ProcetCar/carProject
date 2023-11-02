@@ -52,6 +52,8 @@ Product product=new Product();
 	public void the_product_should_be_added_successfully() {
 	boolean g=pc.isexsist(productlist,productname);
      Assert.assertTrue(g);
+		pc.printproducts(productlist);
+
 	}
 
 	@Then("the admin updates the product {string} with the following details:")
@@ -69,6 +71,7 @@ Product product=new Product();
 	           if (product.getName().equalsIgnoreCase(productname)) {
 	        	   description2 = product.getDescription();
 	        	   price2=  String.valueOf(product.getPrice());
+	        	   product.displayProductDetails();
 	        	   }
 	       }
 
@@ -82,6 +85,8 @@ Product product=new Product();
 	@Then("the product should be updated successfully")
 	public void the_product_should_be_updated_successfully() {
 	System.out.println("updated successfully");
+	System.out.println("=======================================================");
+
 	}
 
 	@Then("the admin deletes the product {string}")
@@ -92,6 +97,7 @@ Product product=new Product();
 	@Then("the product {string} should be deleted successfully")
 	public void the_product_should_be_deleted_successfully(String string) {
 		Assert.assertFalse(pc.isexsist(productlist, string));
+		pc.printproducts(productlist);
 	
 	}
 
@@ -105,6 +111,8 @@ Product product=new Product();
 	@Then("the category should be deleted successfully")
 	public void the_category_should_be_deleted_successfully() {
 	Assert.assertFalse(pc.isexsist(productlist,"Exterior"));
+	pc.printcategory(productlist);
+
 	}
 
 	@When("the admin adds a new user account with the following details:")
@@ -125,6 +133,7 @@ Product product=new Product();
 	@Then("the user account should be added successfully")
 	public void the_user_account_should_be_added_successfully() {
 	  Assert.assertTrue(user.isexsist(userlist,username));
+	  user.printUsers(userlist);
 	}
 
 	@Then("the admin updates the user account {string} with the following details:")
@@ -133,8 +142,7 @@ Product product=new Product();
              email=row.get("Email");
 	}
 		userlist=user.updateUser(userlist,4,string,email,password,age,type);
-		
-	
+		user.searchuser(userlist, string);
 	}
 
 	@Then("the user account should be updated successfully")
@@ -148,8 +156,6 @@ Product product=new Product();
 	       }
 		  
     Assert.assertEquals(updateEmail,"updated@example.com");	
-	         
-	       
     }
 
 	@Then("the admin deletes the user account {string}")
@@ -160,6 +166,7 @@ Product product=new Product();
 	@Then("the user account should be deleted successfully")
 	public void the_user_account_should_be_deleted_successfully() {	
 		Assert.assertFalse(user.isexsist(userlist, username));
+		user.printUsers(userlist);
 	}
 	
 }
