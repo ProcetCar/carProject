@@ -3,7 +3,6 @@ package carProject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 
 
@@ -14,8 +13,6 @@ public class Main {
 	  private static  ProductCatalog pc=new ProductCatalog() ;
 	private static  List<Product> productlist=Mydata.listProduct();
     private static List<Product> orderedProducts=new ArrayList<Product>();
-  	private static String[] cate = new String[3];
-
 	private static User user=new User();
      private static Product product =new Product ();
 
@@ -40,10 +37,14 @@ public class Main {
 			System.out.println("            === Login Page ===");
 			System.out.println("- Please enter your email and password:");
 			System.out.println("===============================================================");
-
+			
 			System.out.println("Email: ");
 	 	    email=scanner.nextLine();
 	          email=scanner.nextLine();
+	          while(!login.ifvalid(email)) {
+	 		    	 System.out.println("email: ");
+	 			     email=scanner.nextLine(); 
+	 		     }
 	          System.out.println("Password: ");
 		     password=scanner.nextLine();
 			login.navigateToLoginPage(email,password,userList);
@@ -120,7 +121,7 @@ public class Main {
 				}
 				if(d==2){
 			  System.out.println("===============================================================");
-				cate=pc.printcategory(productlist);
+				String[] cate = pc.printcategory(productlist);
 				System.out.println("Please select an option:");
 					System.out.println("1. view product in specific catogery");
 					System.out.println("2. go to home page");
@@ -229,8 +230,9 @@ public class Main {
 				}
 				
                 if(d==4) {
-                	user.viewprofile(email,userList);
-                	
+                	//user.viewprofile(email,userList);
+                	user=user.informationUser(userList, email);
+                	user.searchuser(userList, user.getName());
                 	System.out.println("Navigating to the profile page...");
     				System.out.println("            === profile edit page ===");
     				
@@ -293,7 +295,192 @@ public class Main {
 			}
 			}
 		}
+			else if(user.gettype().equals("Admin")) {
+				boolean t=true;
+				while(t) {
+				System.out.println("===================================================================================");
+
+				System.out.println("Navigating to the Admin page...");
+				System.out.println("            === home page ===");
+				System.out.println("Please select an option:");
+				System.out.println("1. Manage Products");
+				System.out.println("2. Manage Users");
+				System.out.println("3. log out");
+
+				System.out.println("===================================================================================");
+
+				 scanner=new Scanner(System.in);
+ 				int c=scanner.nextInt();
+ 				if(c==1) {
+ 					pc.printproducts(productlist);
+ 					System.out.println("===================================================================================");
+ 					System.out.println("Navigating to the product page...");
+ 					System.out.println("            === product page ===");
+
+ 					System.out.println("Please select an option:");
+ 					System.out.println("1. Add product");
+ 					System.out.println("2. delete product");
+ 					System.out.println("3. search product");
+ 					System.out.println("4. update product");
+ 					System.out.println("5.view details about specific product");
+ 					System.out.println("6. go to home page");
+ 					System.out.println("===================================================================================");
+
+ 					 scanner=new Scanner(System.in);
+ 	 				int k=scanner.nextInt();
+                       if (k==1) {
+           				System.out.println("===================================================================================");
+
+           				System.out.println("enter Product Name , description ,price , category , available about product");
+           				System.out.println("Product Name: ");
+           		 	    String productname=scanner.nextLine();
+           		 	     productname=scanner.nextLine();
+
+           		 	     System.out.println("description: ");
+        	 	          String description=scanner.nextLine();
+        	 	         System.out.println("price: ");
+        	 	 	    String price=scanner.nextLine();
+        	 	 	    double price2=Double.valueOf(price);
+        	 	 	  System.out.println("category: ");
+        		 	    String category=scanner.nextLine();
+        		 	   System.out.println("available: ");
+        		 	    String available=scanner.nextLine();
+        		 	  int id=  pc.countProducts(productlist);
+        		 	   productlist=pc.addproducts(productlist,productname,description,price2,category,available);
+
+                       }
+                       else if(k==2) {
+              				System.out.println("enter you product number: ");
+                    	   scanner=new Scanner(System.in);
+        	 				int l=scanner.nextInt(); 
+        	 				productlist=pc.deleteproducts(productlist, l);	
+                       }
+                       else if(k==3) {
+                    	   System.out.println("enter product name: ");
+         	 	          String productname=scanner.nextLine();
+         	 	        productname=scanner.nextLine();
+         	 	          pc.searchproductname(productlist, productname);
+         	 	       
+                       }
+                       else if(k==4) {
+                    	   pc.printproducts(productlist);
+                    	   System.out.println("enter you product number you would to update: ");
+                     	   scanner=new Scanner(System.in);
+         	 				int o=scanner.nextInt();
+                    	   System.out.println("Please select an option:");
+           				System.out.println("1. edit name");
+           				System.out.println("2. edit description");
+           				System.out.println("3. edit price");
+           				System.out.println("4. edit available");
+           			     scanner=new Scanner(System.in);
+  	 				     int f=scanner.nextInt();
+         	 				if(f==1) {
+         	 				  System.out.println("enter new name: ");
+         	 			         name=scanner.nextLine();
+         	 			         name=scanner.nextLine();
+         	 					product=product.informationProduct(productlist, o);
+         	 					productlist=pc.updateproducts(productlist,product.getid() ,name, product.getDescription(), product.getPrice(), product.getCategory(), product.getAvailable());
+         	 				}
+         	 				if(f==2) {
+         	 					 System.out.println("enter new description: ");
+         	 			     String description=scanner.nextLine();
+         	 			         description=scanner.nextLine();
+         	 					product=product.informationProduct(productlist, o);
+         	 					productlist=pc.updateproducts(productlist,product.getid() ,product.getName(), description, product.getPrice(), product.getCategory(), product.getAvailable());
+         	 				}
+         	 				if(f==3) {
+         	 					 System.out.println("enter new price: ");
+             	 			     String price=scanner.nextLine();
+             	 			         price=scanner.nextLine();
+             	 			         double price3=Double.valueOf(price);
+             	 					product=product.informationProduct(productlist, o);
+             	 					productlist=pc.updateproducts(productlist,product.getid() ,product.getName(), product.getDescription(),price3, product.getCategory(), product.getAvailable());
+             	 				
+         	 				}
+         	 				if(f==4) {
+         	 					 System.out.println("enter if available or not : ");
+             	 			     String available=scanner.nextLine();
+             	 			          available=scanner.nextLine();
+             	 					product=product.informationProduct(productlist, o);
+             	 					productlist=pc.updateproducts(productlist,product.getid() ,product.getName(), product.getDescription(),product.getPrice(), product.getCategory(), available);
+             	 				
+         	 				
+         	 				}
+            				
+         	 				
+                       }
+                     if(k==5) {
+                    		System.out.println("enter you product number: ");
+                     	   scanner=new Scanner(System.in);
+         	 				int l=scanner.nextInt(); 
+         	 				pc.searchproduct(productlist, l);
+                      }
+
+
+ 				}
+ 				if(c==2) {
+ 					System.out.println("===================================================================================");
+ 					System.out.println("Navigating to the Users page...");
+ 					System.out.println("            === Users page ===");
+
+ 					System.out.println("Please select an option:");
+ 					System.out.println("1. view Users");
+ 					System.out.println("2. add user ");
+ 					System.out.println("3. delete user");
+ 					System.out.println("4. search user ");
+ 					System.out.println("5. go to home page");
+ 					System.out.println("===================================================================================");
+ 					  scanner=new Scanner(System.in);
+   	 				int l=scanner.nextInt(); 
+   	 				if(l==1) {
+   	 					user.printUsers(userList);
+   	 					
+   	 				}
+   	 				if(l==2) {
+   	 				System.out.println("- Please enter  username and email and password and age :");
+   	 			System.out.println("username: ");
+   	 	 	    String username=scanner.nextLine();
+   	 	          username=scanner.nextLine();
+   	 	          System.out.println("email: ");
+   	 		    String email2=scanner.nextLine();
+   	 		     while(!login.ifvalid(email2)) {
+   	 		    	 System.out.println("email: ");
+   	 			     email2=scanner.nextLine(); 
+   	 		     }
+   	 		    System.out.println("password: ");
+   	 		     password=scanner.nextLine();
+   	 		    System.out.println("age: ");
+   	 		     age=scanner.nextLine();
+   	 	  userList= user.add(username, password, email2, age,userList);	
+			System.out.println("===================================================================================");
+
+   	 				}
+   	 				if(l==3) {
+   	 					user.printUsers(userList);
+   	 				System.out.println("enter  user number you want to delete: ");
+              	   scanner=new Scanner(System.in);
+  	 				int e=scanner.nextInt(); 
+   	 					userList=user.deleteuser(userList, e);
+   	 					System.out.println("===================================================================================");
+
+   	 				}
+   	 				if(l==4) {
+   	   	 		  System.out.println("enter  username: ");
+   	 			 String username=scanner.nextLine();
+   		          username=scanner.nextLine();
+   		          user.searchuser(userList,username);
+   		          
+   	 				}
+ 				}
+ 				if(c==3) {
+ 					System.out.println("you logout successfully");
+ 					t=false;
+ 				}
+				}
+				
 			
+			}
+	
 		}
 	
 		if(p==2) {
@@ -314,10 +501,10 @@ public class Main {
 		    System.out.println("age: ");
 		     age=scanner.nextLine();
 	  userList= user.add(username, password, email, age,userList);	  
-	  user.printUsers(userList);
 	}
 
 }
+       
        }
        
 	}

@@ -117,11 +117,16 @@ System.out.println("=======================updated successfully============");
 	public void setType(String type) {
      this.type=type;		
 	}
-	public List<User> deleteuser(List<User> userList, String string) {
+	
+	
+	
+	public List<User> deleteuser(List<User> userList, int id) {
 		int i=1;
 		for (User user : userList) {
-             if (user.getName().equals(string)) {
+             if (user.getid()==id) {
             	 userList.remove(user);
+            	 System.out.println("=======================deleted successfully============");
+
             	 break;
              }
          }
@@ -139,31 +144,20 @@ System.out.println("=======================updated successfully============");
 
 	     for (User user : userList) {
 
-         String s=String.valueOf(user.getid())+". "+user.getName()+","+user.getEmail()+","+user.getAge()+","+user.gettype();
-            	 System.out.println(s);
+       //  String s=String.valueOf(user.getid())+". "+user.getName()+","+user.getEmail()+","+user.getAge()+","+user.gettype();
+           // 	 System.out.println(s);
+	     	 System.out.println("userId: "+user.getid());
+	     	 System.out.println("username: "+user.getName());
+        	 System.out.println("email: "+user.getEmail());
+        	 System.out.println("password: "+user.getPassword());
+        	 System.out.println("Age: "+user.getAge());
+           	 System.out.println("==================================================================");
 
          }
        	 System.out.println("==================================================================");
 
 }
-	public void viewprofile(String email,List<User> userList) {
-      	 System.out.println("==================================================================");
 
-		for (User user : userList) {
-            if (user.getEmail().equals(email)) {
-            	
-            	 System.out.println("username: "+user.getName());
-            	 System.out.println("email: "+user.getEmail());
-            	 System.out.println("password: "+user.getPassword());
-            	 System.out.println("Age: "+user.getAge());
-            	 //System.out.println("Type: "+user.gettype());
-            }
-            
-        }
-      	 System.out.println("==================================================================");
-
-		
-	}
 	public int countUsers(List<User> userList) {
 		int i=0;
 		for (User user : userList) {
@@ -184,6 +178,23 @@ System.out.println("=======================updated successfully============");
         }
 		return null;
 	
+	}
+	public void searchuser(List<User> userList, String name) {
+     	 System.out.println("==================================================================");
+
+		for (User user : userList) {
+            if (user.getName().equalsIgnoreCase(name)) {
+   	     	 System.out.println("Id: "+user.getName());
+            	 System.out.println("username: "+user.getName());
+            	 System.out.println("email: "+user.getEmail());
+            	 System.out.println("password: "+user.getPassword());
+            	 System.out.println("Age: "+user.getAge());
+            	 //System.out.println("Type: "+user.gettype());
+            }
+            
+        }
+     	 System.out.println("==================================================================");
+
 	}
 
 }

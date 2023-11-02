@@ -10,7 +10,6 @@ import io.cucumber.java.en.When;
 
 public class signupsteps {
 	
-	public Signup signup=new Signup();
 	public static String email;
 	public static String password;
 	public static String username;
@@ -21,7 +20,7 @@ public class signupsteps {
 
 @Given("I am on the signup page")
 public void i_am_on_the_signup_page() {
-    Assert.assertTrue(signup.run(1));
+    Assert.assertTrue(lo.run(1));
 }
 
 @When("I enter a valid username as a  {string}")

@@ -23,6 +23,7 @@ public class AdminRoleSteps {
     String category="Interior";
     String available="available";
 String email,username,password,age,type;
+Product product=new Product();
 	@When("the admin selects the {string} option")
 	public void the_admin_selects_the_option(String string) {
 		manageProducts=string;
@@ -61,7 +62,7 @@ String email,username,password,age,type;
 	             price = Double.valueOf(row.get("Price"));
  
       }
-		 productlist=pc.updateproducts(productlist,string,description,price,category,available);
+		 productlist=pc.updateproducts(productlist,5,string,description,price,category,available);
 		 String description2 ="";
 		  String price2 ="";
 		   for (Product product : productlist) {
@@ -85,7 +86,7 @@ String email,username,password,age,type;
 
 	@Then("the admin deletes the product {string}")
 	public void the_admin_deletes_the_product(String string) {
-	productlist=pc.deleteproducts(productlist,string);   
+	productlist=pc.deleteproducts(productlist,5);   
 	}
 
 	@Then("the product {string} should be deleted successfully")
@@ -153,7 +154,7 @@ String email,username,password,age,type;
 
 	@Then("the admin deletes the user account {string}")
 	public void the_admin_deletes_the_user_account(String string) {
-		userlist=user.deleteuser(userlist,string);
+		userlist=user.deleteuser(userlist,4);
 	}
 
 	@Then("the user account should be deleted successfully")

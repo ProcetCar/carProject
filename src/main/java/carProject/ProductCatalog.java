@@ -31,25 +31,29 @@ public class ProductCatalog {
          }
          return false;		
 	}
-	public List<Product> updateproducts(List<Product> productlist, String productname, String description, double price,
+	public List<Product> updateproducts(List<Product> productlist,int id, String productname, String description, double price,
 			String category, String available) {
 		 for (Product product : productlist) {
-             if (product.getName().equals(productname)) {
+			 if(product.getid()==id) {
+             product.setName(productname);
             	 product.setDescription(description);
             	 product.setPrice(price);
             	 product.setcategory(category);
             	 product.setAvailable(available);
-             }
+			 }
          }
 				return productlist;
 		
 		
 	}
-	public List<Product> deleteproducts(List<Product> productlist, String string) {
+	public List<Product> deleteproducts(List<Product> productlist, int id) {
 		 int i=0;
 		for (Product product : productlist) {
-             if (product.getName().equals(string)) {
+             if (product.getid()==id) {
             	 productlist.remove(product);
+            	 System.out.println("deleted successfully");
+            	 System.out.println("============================================================");
+
             	 break;
              }
          }
@@ -59,9 +63,19 @@ public class ProductCatalog {
          }
 				return productlist;
 	}
+	public List<Product> addproducts(List<Product> productlist,String productname, String description, double price,
+			String category, String available ) {
+	 	  int id=countProducts(productlist);
+		productlist.add(new Product(id,productname,description,price,category,available));
+		System.out.println("==========================================================================");
+		System.out.println("added successfully");
+		System.out.println("==========================================================================");
+
+		return productlist;
+	}
 	public List<Product> deletecategory(List<Product> productlist, String string) {
 		for (Product product : productlist) {
-            if (product.getCategory().equals(string)) {
+            if (product.getCategory().equalsIgnoreCase(string)) {
            	 productlist.remove(product);
            	 continue;
            	
@@ -103,7 +117,7 @@ public class ProductCatalog {
      	 System.out.println("==================================================================");
 
 		for (Product product : productlist) {
-           if(product.getCategory().equals(category)) {
+           if(product.getCategory().equalsIgnoreCase(category)) {
         	  // String s=String.valueOf(product.getid())+". "+"product name: "+product.getName()+", "+"product Description: "+product.getDescription()+", "+"product Category: "+product.getCategory()+", "+"product price: "+product.getPrice()+", "+"product Available: "+product.getAvailable();
           	  String s=String.valueOf(product.getid())+". "+"product name: "+product.getName();
         	   System.out.println(s);
@@ -153,7 +167,7 @@ int j=i+1;
 	    List<Product> productlist2=new ArrayList<Product>();
 
 		for (Product product : productlist) {
-			if(product.getCategory().equals(category)) {
+			if(product.getCategory().equalsIgnoreCase(category)) {
 				
 				productlist2.add(product);
 			}
@@ -208,7 +222,7 @@ for (Product product : orderedProducts) {
 		int id = 0;
 		for (Product product : productlist) {
 		   
-			if(product.getName().equals(nameproduct)) {
+			if(product.getName().equalsIgnoreCase(nameproduct)) {
                id=product.getid();
 				 System.out.println("Name: " + product.getName());
 			        System.out.println("Description: " + product.getDescription());

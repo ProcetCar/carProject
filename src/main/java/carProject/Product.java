@@ -60,13 +60,7 @@ public class Product {
         this.id = id;
     }
     
-    public void updateProduct(String name, String description, double price, String category, String available) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.available = available;
-    }
+ 
 
 
     public void displayProductDetails() {
@@ -107,6 +101,12 @@ public Product informationProduct(List<Product> productlist,int id) {
 		return null;
 	
 	}
+
+
+
+public void setName(String productname) {
+this.name=productname;	
+}
     
 }
 
