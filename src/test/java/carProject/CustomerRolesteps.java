@@ -14,12 +14,14 @@ import io.cucumber.java.en.When;
 
 public class CustomerRolesteps {
     private List<Product> orderedProducts=new ArrayList<Product>();
-    private static Order order=new Order();
+	private static UserMethods um=new UserMethods();
 	  private static  List<User> userList=Mydata.listUser();
-	  private static  ProductCatalog pc=new ProductCatalog() ;
+	  private static  ProductMethods pc=new ProductMethods() ;
 	private static  List<Product> productlist=Mydata.listProduct();
 	List<Product> productlist2,productlist3;
 	private static User user=new User();
+
+	private static Order order=new Order();
 
 	String s1,s2,add,buy,productpurchase;
 	String email1,email2;
@@ -166,13 +168,13 @@ public void they_click_on_the_or_button(String string, String string2) {
 public void they_should_be_able_to_make_a_purchase() {
 
 	
-	int i=order.countorder(orderedProducts);
+	int i=OrderedMethods.countorder(orderedProducts);
 	Product e =new Product() ;
-	e=e.informationProduct(productlist, 1);
+	e=pc.informationProduct(productlist, 1);
 		orderedProducts.add(e);
                
 
-		double price=order.searchorder(productpurchase,orderedProducts);
+		double price=OrderedMethods.searchorder(productpurchase,orderedProducts);
 		String s=String.valueOf(price);
 	Assert.assertEquals(s,"49.99");
 		
@@ -240,14 +242,15 @@ public void they_make_changes_email(String string) {
 
 @When("click {string}")
 public void click(String string) {
-	user=user.informationUser(userList, email1);
+	user=um.informationUser(userList, email1);
 
-	userList=user.updateUser(userList,1, user.getName(),email2, user.getPassword(), user.getAge(), user.gettype());
+	userList=um.updateUser(userList,1, user.getName(),email2, user.getPassword(), user.getAge(), user.gettype());
 }
 
 @Then("their profile information should be updated successfully")
 public void their_profile_information_should_be_updated_successfully() {
-	user=user.informationUser(userList, email2);
+	user=um.informationUser(userList, email2);
+	um.searchuser(userList, user.getName());
 	Assert.assertEquals(user.getEmail(), email2);
     
 }

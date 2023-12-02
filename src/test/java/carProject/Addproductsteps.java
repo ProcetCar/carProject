@@ -11,7 +11,7 @@ import io.cucumber.java.en.When;
 
 public class Addproductsteps {
 	private static  List<Product> productlist=Mydata.listProduct();
-	private static ProductCatalog pc=new ProductCatalog();
+	private static ProductMethods pc=new ProductMethods();
 	  String productName;
 	@Given("the admin is logged in and has access to the system")
 	public void the_admin_is_logged_in_and_has_access_to_the_system() {
@@ -39,7 +39,7 @@ public class Addproductsteps {
 	public void the_product_should_be_added() {
 		boolean g=pc.isexsist(productlist,productName);
 	     Assert.assertTrue(g);
-	   
+	   pc.printproducts(productlist);
 	}
 
 }

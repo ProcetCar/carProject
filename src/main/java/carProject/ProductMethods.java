@@ -5,12 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ProductCatalog {
+public class ProductMethods {
    
-
-    private List<Product> products=new ArrayList<Product>();
     
-    public ProductCatalog() {
+    public ProductMethods() {
 		super();
 	}
     
@@ -106,7 +104,18 @@ public class ProductCatalog {
 		return i;
 	}
 
+public Product informationProduct(List<Product> productlist,int id) {
+		
 
+		for (Product product : productlist) {
+            if (product.getid()==id) {
+            return product;	  
+            }
+            
+        }
+		return null;
+	
+	}
 
 
 
@@ -181,7 +190,7 @@ int j=i+1;
 		
 		return productlist2;
 	}
-	public  void searchproduct(List<Product> productlist, int id) {
+	public  boolean searchproduct(List<Product> productlist, int id) {
 
 		for (Product product : productlist) {
 			if(product.getid()==id) {
@@ -189,12 +198,16 @@ int j=i+1;
 			        System.out.println("Description: " + product.getDescription());
 			        System.out.println("Category: " + product.getCategory());
 			        System.out.println("Price: " + product.getPrice());
-			        System.out.println("Availability: " + product.getAvailable());
-			        break;
+			        return true;
 			}
         }
+		return false;
 		
 	}
+	
+	
+		
+	
 
 
 
@@ -228,7 +241,6 @@ for (Product product : orderedProducts) {
 			        System.out.println("Description: " + product.getDescription());
 			        System.out.println("Category: " + product.getCategory());
 			        System.out.println("Price: " + product.getPrice());
-			        System.out.println("Availability: " + product.getAvailable());
 			        break;
 			}
 		}

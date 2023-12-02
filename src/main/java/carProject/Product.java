@@ -89,18 +89,7 @@ public class Product {
 	public void setcategory(String category) {
         this.category = category;
 	}
-public Product informationProduct(List<Product> productlist,int id) {
-		
 
-		for (Product product : productlist) {
-            if (product.getid()==id) {
-            return product;	  
-            }
-            
-        }
-		return null;
-	
-	}
 
 
 

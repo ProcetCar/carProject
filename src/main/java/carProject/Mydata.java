@@ -21,10 +21,11 @@ public class Mydata {
 
 	
 	public static   List<User> listUser(){
-	    userList.add(new User(1,"Lama","example1@gmail.com", "password1" ,"customer", "18"));
+	    userList.add(new User(1,"Lama","sheehasamah6@gmail.com", "password1" ,"customer", "18"));
         userList.add(new User(2,"Ibtissam","example2@gmail.com", "password2" ,"installer", "27"));
         userList.add(new User(3,"Sami","example3@gmail.com", "password3" ,"Admin"," 21"));
-        
+        userList.add(new User(4,"Sami","sheehasamah6@gmail.com", "password4" ,"customer"," 21"));
+
             return userList;
        }
 
@@ -48,9 +49,7 @@ public class Mydata {
 	                "Set of 4 stylish alloy wheels",
 	                249.99,
 	                "Exterior",
-	                "available"));
-
-	        
+	                "not available"));	        
 
 	        products.add(new Product(4,"Car Audio System",
 	                "Premium car audio system with Bluetooth connectivity",

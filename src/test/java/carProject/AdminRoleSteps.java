@@ -14,7 +14,9 @@ public class AdminRoleSteps {
 	
 	private static  List<User> userlist=Mydata.listUser();
 	private static  List<Product> productlist=Mydata.listProduct();
-	private static ProductCatalog pc=new ProductCatalog();
+	private static ProductMethods pc=new ProductMethods();
+	private static UserMethods um=new UserMethods();
+
 	private static User user=new User();
 	String manageProducts,managecategory,mangeuser;
 	String productname="Product A";
@@ -52,6 +54,8 @@ Product product=new Product();
 	public void the_product_should_be_added_successfully() {
 	boolean g=pc.isexsist(productlist,productname);
      Assert.assertTrue(g);
+		pc.printproducts(productlist);
+
 	}
 
 	@Then("the admin updates the product {string} with the following details:")
@@ -69,6 +73,7 @@ Product product=new Product();
 	           if (product.getName().equalsIgnoreCase(productname)) {
 	        	   description2 = product.getDescription();
 	        	   price2=  String.valueOf(product.getPrice());
+	        	   product.displayProductDetails();
 	        	   }
 	       }
 
@@ -82,6 +87,8 @@ Product product=new Product();
 	@Then("the product should be updated successfully")
 	public void the_product_should_be_updated_successfully() {
 	System.out.println("updated successfully");
+	System.out.println("=======================================================");
+
 	}
 
 	@Then("the admin deletes the product {string}")
@@ -92,6 +99,7 @@ Product product=new Product();
 	@Then("the product {string} should be deleted successfully")
 	public void the_product_should_be_deleted_successfully(String string) {
 		Assert.assertFalse(pc.isexsist(productlist, string));
+		pc.printproducts(productlist);
 	
 	}
 
@@ -105,6 +113,8 @@ Product product=new Product();
 	@Then("the category should be deleted successfully")
 	public void the_category_should_be_deleted_successfully() {
 	Assert.assertFalse(pc.isexsist(productlist,"Exterior"));
+	pc.printcategory(productlist);
+
 	}
 
 	@When("the admin adds a new user account with the following details:")
@@ -116,7 +126,7 @@ Product product=new Product();
             type=row.get("type");
             age=row.get("age");
 	}
-		int i= user.countUsers(userlist);
+		int i= um.countUsers(userlist);
 		 User e=new User(i,username,email,password,type,age);
 		userlist.add(e);
 		
@@ -124,7 +134,8 @@ Product product=new Product();
 
 	@Then("the user account should be added successfully")
 	public void the_user_account_should_be_added_successfully() {
-	  Assert.assertTrue(user.isexsist(userlist,username));
+	  Assert.assertTrue(um.isexsist(userlist,username));
+	  um.printUsers(userlist);
 	}
 
 	@Then("the admin updates the user account {string} with the following details:")
@@ -132,9 +143,8 @@ Product product=new Product();
 		for (Map<String, String> row : dataTable) {
              email=row.get("Email");
 	}
-		userlist=user.updateUser(userlist,4,string,email,password,age,type);
-		
-	
+		userlist=um.updateUser(userlist,4,string,email,password,age,type);
+		um.searchuser(userlist, string);
 	}
 
 	@Then("the user account should be updated successfully")
@@ -148,18 +158,17 @@ Product product=new Product();
 	       }
 		  
     Assert.assertEquals(updateEmail,"updated@example.com");	
-	         
-	       
     }
 
 	@Then("the admin deletes the user account {string}")
 	public void the_admin_deletes_the_user_account(String string) {
-		userlist=user.deleteuser(userlist,4);
+		userlist=um.deleteuser(userlist,4);
 	}
 
 	@Then("the user account should be deleted successfully")
 	public void the_user_account_should_be_deleted_successfully() {	
-		Assert.assertFalse(user.isexsist(userlist, username));
+		Assert.assertFalse(um.isexsist(userlist, username));
+		um.printUsers(userlist);
 	}
 	
 }

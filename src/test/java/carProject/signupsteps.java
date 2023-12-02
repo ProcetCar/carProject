@@ -48,6 +48,7 @@ public void i_should_be_registered_successfully() {
 	User e=new User(1,username,email,password,"customer",age);
 	userlist.add(e);
 	Assert.assertTrue(lo.checkIfRegister(email,userlist));
+	System.out.println("registered successfully");
 }
 
 @Given("a user is already registered")
@@ -66,6 +67,8 @@ public void i_click_the_signup_button() {
 @Then("I should see an error message for a user already registered")
 public void i_should_see_an_error_message_for_a_user_already_registered() {
 	Assert.assertTrue(lo.checkIfRegister(email,userlist));
+	System.out.println(" you already registered ");
+
 }
 
 @When("I enter a username as a {string}")

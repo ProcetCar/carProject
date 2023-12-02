@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(features = "use_cases/admin role.feature", glue ="carProject")
+@CucumberOptions(features = "use_cases/Installation_Requests.feature", glue ="carProject")
 
 public class Testclass {
 

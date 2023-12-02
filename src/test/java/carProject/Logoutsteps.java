@@ -22,6 +22,7 @@ public class Logoutsteps {
 
 	@Then("the login page will appear")
 	public void the_login_page_will_appear() {
+		System.out.println("you logout successfully");
 	   Assert.assertTrue(lo.run(1));
 	}
 	

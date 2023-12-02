@@ -11,8 +11,7 @@ public class LOGIN {
 	    private String enteredEmail;
 	    private String enteredPassword;
 	    private static String tyu = "";
-		 private static Mydata data=new Mydata();
-		  private static  List<User> userlist=new ArrayList<User>();
+		
 
 	public boolean run(int p) {
         return p == 1;
@@ -76,7 +75,7 @@ public class LOGIN {
 
 		public boolean ifvalid(String string) {
 			if(string.equals("") || !string.contains("@gmail.com") ){
-				System.out.println("invalid email please try again...");
+				System.out.println("invalid  please try again...");
 				return false;
 			}
 			return true;
