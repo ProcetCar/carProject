@@ -13,21 +13,25 @@ private int id;
    private String password;
 	private String type;
 	private String age;
+	private String Time;
 	
 	
 	public User() {
 	}
 	
-	public User(int id,String name,String email, String password , String type,String age) {
+	public User(int id,String name,String email, String password , String type,String age,String Time) {
        this.id=id;
 		this.name=name;
    	this.email = email;
        this.password = password;
        this.type = type;
        this.age=age;
-
+this.Time=Time;
    }
-   
+	public String getTime() {
+
+	       return Time;
+	   }
 public String getName() {
 
        return name;

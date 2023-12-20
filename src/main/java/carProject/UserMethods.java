@@ -15,7 +15,7 @@ public class UserMethods {
            }
        	  else {    	  
        		  System.out.println(" you  register successfully");
-   		userList.add(new User(i,username,email,password,"customer",age));	
+   		userList.add(new User(i,username,email,password,"customer",age,""));	
        	  }
        	  }
          else {
@@ -58,10 +58,12 @@ System.out.println("=======================updated successfully============");
        return false;	
 	}
 	
-	public int id_installer(List<User> userlist) {
+	public int id_installer(List<User> userlist,String Time) {
 		for (User user : userlist) {
            if (user.gettype().equals("installer")) {
+        	   if(user.getTime().equals(Time)) {
                return user.getid();
+           }
            }
        }
        return 0;	

@@ -23,11 +23,13 @@ List<Order> request=new ArrayList<Order>();
 	     String email="sheehasamah6@gmail.com";
 	     String city="nablus";
 	     String street="rafidia";
+         String s="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
+
 	      productlist.add(new Product(2,"Car GPS Navigation System",
 	             "Advanced GPS navigation system for cars",
 	             199.99,
 	             "Electronics",
-	             "available"));;
+	             "available",s));;
 	     Date currentDate = new Date();
 	       order=new Order(orderid,customerid,productlist,email,currentDate,city,street,"pending",2);
          request.add(order);	      
@@ -51,12 +53,13 @@ List<Order> request=new ArrayList<Order>();
 	     String email="sheehasamah6@gmail.com";
 	     String city="nablus";
 	     String street="rafidia";
+         String s="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
 
 	     productlist.add(new Product(3,"Alloy Wheels",
 	             "Set of 4 stylish alloy wheels",
 	             249.99,
 	             "Exterior",
-	             "not available"));
+	             "not available",s));
 	     Date currentDate = new Date();
 	      order=new Order(orderid,customerid,productlist,email,currentDate,city,street,"pending",2);
 	      request.add(order);

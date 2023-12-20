@@ -75,31 +75,8 @@ public void they_should_see_detailed_product_information() {
 	pc.printproducts(productlist);
 	List<Product> productlist5=new ArrayList<Product>();
 productlist=Mydata.listProduct();
-	  productlist5.add(new Product(1,"Car Seat Cover",
-	          "High-quality seat cover for cars",
-	          49.99,
-	          "Interior",
-	          "available"));
+productlist5=Mydata.listProduct();
 
-	  productlist5.add(new Product(2,"Car GPS Navigation System",
-	          "Advanced GPS navigation system for cars",
-	          199.99,
-	          "Electronics",
-	          "available"));
-
-	  productlist5.add(new Product(3,"Alloy Wheels",
-	          "Set of 4 stylish alloy wheels",
-	          249.99,
-	          "Exterior",
-	          "available"));
-
-	  
-
-	  productlist5.add(new Product(4,"Car Audio System",
-	          "Premium car audio system with Bluetooth connectivity",
-	          299.99,
-	          "Electronics",
-	          "available"));
       boolean areEqual =true;
       if (productlist.size() != productlist5.size()) {
     	    areEqual = true;
@@ -137,7 +114,8 @@ public void the_following_details(List<Map<String, String>> dataTable) {
          String category = row.get("category");
          String available = row.get("available");
          s2=productName;
-         Product e=new Product(1,productName,description,Double.valueOf(price),category,available);
+         String r="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
+         Product e=new Product(1,productName,description,Double.valueOf(price),category,available,r);
          productlist3=new ArrayList<Product>();
 
          productlist3.add(e);

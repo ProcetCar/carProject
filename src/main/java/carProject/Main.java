@@ -9,11 +9,18 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 
-
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 
 public class Main {
+
+
+	
 	  static LOGIN login=new LOGIN();
 	  private static  List<User> userList=Mydata.listUser();
 	  private static  ProductMethods pm=new ProductMethods() ;
@@ -29,8 +36,15 @@ public class Main {
 
 	public static void main(String[] args) {
 
+    
 		String name,email,password,age;
        boolean islogin=false;
+       
+       
+    
+       
+       
+
        while(true) {
        System.out.println("===============================================================");
 
@@ -150,7 +164,11 @@ public class Main {
 									   String street=scanner.nextLine();
 									   Date date=new Date();
 									   int id2= OrderedMethods.count(request);
-									   int installer=um.id_installer(userList);
+					  				  System.out.println("chose time: 1-2 , 2-3 , 3-4");
+					  				System.out.println("Time: ");
+									   String Time=scanner.nextLine();
+									    Time=scanner.nextLine();
+									   int installer=um.id_installer(userList,Time);
 									  Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 									  
 									  request.add(order);
@@ -251,8 +269,12 @@ public class Main {
 										   String street=scanner.nextLine();
 										   Date date=new Date();
 										   int id2= OrderedMethods.count(request);
-										   int installer=um.id_installer(userList);
-										  Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
+										   System.out.println("chose time: 1-2 , 2-3 , 3-4");
+							  				System.out.println("Time: ");
+											   String Time=scanner.nextLine();
+											    Time=scanner.nextLine();
+											   int installer=um.id_installer(userList,Time);
+											   Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 										  
 										  request.add(order);
 										//  boolean f=OrderedMethods.ifAvailable(order);
@@ -327,8 +349,12 @@ public class Main {
 										   String street=scanner.nextLine();
 										   Date date=new Date();
 										   int id2= OrderedMethods.count(request) ;
-										   int installer=um.id_installer(userList);
-										  Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
+										   System.out.println("chose time: 1-2 , 2-3 , 3-4");
+							  				System.out.println("Time: ");
+											   String Time=scanner.nextLine();
+											    Time=scanner.nextLine();
+											   int installer=um.id_installer(userList,Time);
+											   Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 										  request.add(order);
 										  //boolean f=OrderedMethods.ifAvailable(order);
 										//  order=OrderedMethods.changeStatus(order,f);

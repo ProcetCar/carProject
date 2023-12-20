@@ -45,7 +45,7 @@ public void i_enter_a_valid_age_as_a(String string) {
 
 @Then("I should be registered successfully")
 public void i_should_be_registered_successfully() {
-	User e=new User(1,username,email,password,"customer",age);
+	User e=new User(1,username,email,password,"customer",age,"");
 	userlist.add(e);
 	Assert.assertTrue(lo.checkIfRegister(email,userlist));
 	System.out.println("registered successfully");

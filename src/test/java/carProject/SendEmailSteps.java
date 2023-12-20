@@ -20,11 +20,12 @@ public void order_is_complete() {
      String email="sheehasamah6@gmail.com";
      String city="nablus";
      String street="rafidia";
+     String r="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
       productlist.add(new Product(2,"Car GPS Navigation System",
              "Advanced GPS navigation system for cars",
              199.99,
              "Electronics",
-             "available"));;
+             "available",r));;
      Date currentDate = new Date();
        order=new Order(orderid,customerid,productlist,email,currentDate,city,street,"pending",2);
       
@@ -36,7 +37,7 @@ public void order_is_complete() {
 public void send_email() {
 boolean f=OrderedMethods.ifAvailable(order);
 if(f) {
-SendMail.getSendEmail("order is complete", "sheehasamah6@gmail.com"); 
+//SendMail.getSendEmail("order is complete", "sheehasamah6@gmail.com"); 
 
 }
 Assert.assertTrue(f);
@@ -53,12 +54,12 @@ public void order_isn_t_complete() {
      String email="sheehasamah6@gmail.com";
      String city="nablus";
      String street="rafidia";
-
+String r="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
      productlist.add(new Product(3,"Alloy Wheels",
              "Set of 4 stylish alloy wheels",
              249.99,
              "Exterior",
-             "not available"));
+             "not available",r));
      Date currentDate = new Date();
       order=new Order(orderid,customerid,productlist,email,currentDate,city,street,"pending",2);
       
@@ -71,7 +72,7 @@ public void order_isn_t_complete() {
 public void send_email_order_not_complete() {
 	boolean f=OrderedMethods.ifAvailable(order);
 	if(!f) {
-	SendMail.getSendEmail("order not complete", "sheehasamah6@gmail.com"); 
+	//SendMail.getSendEmail("order not complete", "sheehasamah6@gmail.com"); 
 
 	}
 	Assert.assertFalse(f);

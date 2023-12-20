@@ -1,5 +1,8 @@
 package carProject;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -64,7 +67,7 @@ public class ProductMethods {
 	public List<Product> addproducts(List<Product> productlist,String productname, String description, double price,
 			String category, String available ) {
 	 	  int id=countProducts(productlist);
-		productlist.add(new Product(id,productname,description,price,category,available));
+		productlist.add(new Product(id,productname,description,price,category,available,""));
 		System.out.println("==========================================================================");
 		System.out.println("added successfully");
 		System.out.println("==========================================================================");
@@ -75,7 +78,6 @@ public class ProductMethods {
 		for (Product product : productlist) {
             if (product.getCategory().equalsIgnoreCase(string)) {
            	 productlist.remove(product);
-           	 continue;
            	
             }
         }
@@ -198,6 +200,7 @@ int j=i+1;
 			        System.out.println("Description: " + product.getDescription());
 			        System.out.println("Category: " + product.getCategory());
 			        System.out.println("Price: " + product.getPrice());
+			        openimage(product.getimage());
 			        return true;
 			}
         }
@@ -241,10 +244,36 @@ for (Product product : orderedProducts) {
 			        System.out.println("Description: " + product.getDescription());
 			        System.out.println("Category: " + product.getCategory());
 			        System.out.println("Price: " + product.getPrice());
+			        openimage(product.getimage());
+
 			        break;
 			}
 		}
 		return id;
+	}
+
+
+
+
+
+
+
+
+	public void openimage(String imagePath) {
+		// Check if Desktop is supported on the current platform
+	       if (Desktop.isDesktopSupported()) {
+	           Desktop desktop = Desktop.getDesktop();
+	           try {
+	               File imageFile = new File(imagePath);
+	               desktop.open(imageFile);
+
+	           } catch (IOException e) {
+	               e.printStackTrace();
+	           }
+	       } else {
+	           System.out.println("Desktop not supported.");
+	       }
+		
 	}
 	
 	

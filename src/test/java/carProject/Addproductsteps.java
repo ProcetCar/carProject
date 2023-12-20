@@ -28,7 +28,8 @@ public class Addproductsteps {
 	            String category = row.get("category");
 	            String available = row.get("available");
 	           int i= pc.countProducts(productlist);
-         Product p=new Product(i,productName,description,Double.valueOf(price),category,available);
+	           String s="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
+         Product p=new Product(i,productName,description,Double.valueOf(price),category,available,s);
      		productlist.add(p);
 
 	           

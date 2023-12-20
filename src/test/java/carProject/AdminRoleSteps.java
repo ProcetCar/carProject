@@ -26,6 +26,7 @@ public class AdminRoleSteps {
     String available="available";
 String email,username,password,age,type;
 Product product=new Product();
+int i,d=0;
 	@When("the admin selects the {string} option")
 	public void the_admin_selects_the_option(String string) {
 		manageProducts=string;
@@ -40,8 +41,10 @@ Product product=new Product();
 	            String price = row.get("Price");
 	            String category = row.get("category");
 	            String available = row.get("available");
-	           int i= pc.countProducts(productlist);
-         Product p=new Product(i,productName,description,Double.valueOf(price),category,available);
+	             d= pc.countProducts(productlist);
+	           String s="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
+
+         Product p=new Product(d,productName,description,Double.valueOf(price),category,available,s);
      		productlist.add(p);
 
 	           
@@ -53,7 +56,7 @@ Product product=new Product();
 	@Then("the product should be added successfully")
 	public void the_product_should_be_added_successfully() {
 	boolean g=pc.isexsist(productlist,productname);
-     Assert.assertTrue(g);
+        Assert.assertTrue(g);
 		pc.printproducts(productlist);
 
 	}
@@ -66,7 +69,7 @@ Product product=new Product();
 	             price = Double.valueOf(row.get("Price"));
  
       }
-		 productlist=pc.updateproducts(productlist,5,string,description,price,category,available);
+		 productlist=pc.updateproducts(productlist,d,string,description,price,category,available);
 		 String description2 ="";
 		  String price2 ="";
 		   for (Product product : productlist) {
@@ -77,7 +80,7 @@ Product product=new Product();
 	        	   }
 	       }
 
-		  Assert.assertEquals(description2,"Updated Description");
+		 Assert.assertEquals(description2,"Updated Description");
 		 Assert.assertEquals(price2,"60.0");
 
 	           
@@ -93,7 +96,7 @@ Product product=new Product();
 
 	@Then("the admin deletes the product {string}")
 	public void the_admin_deletes_the_product(String string) {
-	productlist=pc.deleteproducts(productlist,5);   
+	productlist=pc.deleteproducts(productlist,d);   
 	}
 
 	@Then("the product {string} should be deleted successfully")
@@ -126,8 +129,8 @@ Product product=new Product();
             type=row.get("type");
             age=row.get("age");
 	}
-		int i= um.countUsers(userlist);
-		 User e=new User(i,username,email,password,type,age);
+		 i= um.countUsers(userlist);
+		 User e=new User(i,username,email,password,type,age,"");
 		userlist.add(e);
 		
 	}
@@ -143,7 +146,7 @@ Product product=new Product();
 		for (Map<String, String> row : dataTable) {
              email=row.get("Email");
 	}
-		userlist=um.updateUser(userlist,4,string,email,password,age,type);
+		userlist=um.updateUser(userlist,i,string,email,password,age,type);
 		um.searchuser(userlist, string);
 	}
 
@@ -162,7 +165,7 @@ Product product=new Product();
 
 	@Then("the admin deletes the user account {string}")
 	public void the_admin_deletes_the_user_account(String string) {
-		userlist=um.deleteuser(userlist,4);
+		userlist=um.deleteuser(userlist,i);
 	}
 
 	@Then("the user account should be deleted successfully")

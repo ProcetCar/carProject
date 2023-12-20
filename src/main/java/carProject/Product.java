@@ -9,9 +9,10 @@ public class Product {
     private String category;
     private String available;
     private int id;
+    private String image;
 
    
-    public Product( int id,String name, String description, double price, String category, String available) {
+    public Product( int id,String name, String description, double price, String category, String available,String image) {
         
     	this.id=id;
     	this.name = name;
@@ -19,6 +20,7 @@ public class Product {
         this.price = price;
         this.category = category;
         this.available = available;
+        this.image=image;
     }
 
       
@@ -28,7 +30,9 @@ public class Product {
 	}
 
 
-
+    public String getimage() {
+        return image;
+    }
 	public String getName() {
         return name;
     }

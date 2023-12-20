@@ -106,4 +106,5 @@ public class InstallationRequestsSteps {
 		Assert.assertEquals(order.getOrderStatus(),"canceled" );
 
 	}
-}
+	}
+

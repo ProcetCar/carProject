@@ -20,11 +20,12 @@ public void when_chose_view_order() {
     String email="sheehasamah6@gmail.com";
     String city="nablus";
     String street="rafidia";
+    String r="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
      productlist.add(new Product(2,"Car GPS Navigation System",
             "Advanced GPS navigation system for cars",
             199.99,
             "Electronics",
-            "available"));;
+            "available",r));;
     Date currentDate = new Date();
       order=new Order(orderid,customerid,productlist,email,currentDate,city,street,"pending",2);
      request.add(order);
