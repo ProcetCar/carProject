@@ -13,7 +13,7 @@ public class SendMail {
         Logger logger = Logger.getLogger(SendMail.class.getName());
         String to = email;
 
-        String from = "carcompany78@gmail.com";
+        final String from = "carcompany78@gmail.com";
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
