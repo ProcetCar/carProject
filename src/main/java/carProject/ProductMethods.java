@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Iterator;
+
 
 public class ProductMethods {
    
@@ -75,13 +77,15 @@ public class ProductMethods {
 		return productlist;
 	}
 	public List<Product> deletecategory(List<Product> productlist, String string) {
-		for (Product product : productlist) {
-            if (product.getCategory().equalsIgnoreCase(string)) {
-           	 productlist.remove(product);
-           	
-            }
+		List<Product> toRemove = new ArrayList<>();
+    for (Product product : productlist) {
+        if (product.getCategory().equalsIgnoreCase(string)) {
+            toRemove.add(product);
         }
-				return productlist;
+    }
+    productlist.removeAll(toRemove);
+    return productlist;
+
 	}
 	public void printproducts(List<Product> productlist) {
       	 System.out.println("==================================================================");
