@@ -4,7 +4,7 @@ name: GitHub Actions Maven Build Example
 
 on:
    push:
-     branches: [ main] 
+     branches: [ task3] 
 jobs:
 
    build-on-ubuntu:
