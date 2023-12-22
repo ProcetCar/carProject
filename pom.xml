@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -11,7 +11,7 @@
         <maven.compiler.target>7</maven.compiler.target>
         <sonar.organization>caracc-project</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.exclusions>**/carProject/Main.java</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>carProject/Main.java</sonar.coverage.exclusions>
     </properties>
    <dependencies>
 	  
@@ -65,8 +65,6 @@
   </dependencies>
 	<build>
         <plugins>
-            <!-- Other plugins -->
-
             <!-- JaCoCo Plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -78,15 +76,17 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+                    <!-- Attached to Maven test phase -->
                     <execution>
                         <id>report</id>
-                        <phase>prepare-package</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+            <!-- Other plugins if any -->
         </plugins>
     </build>
 </project> 
