@@ -12,7 +12,8 @@ public class Product {
     private int id;
     private String image;
 
-   
+       private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
+
     public Product( int id,String name, String description, double price, String category, String available,String image) {
         
     	this.id=id;
