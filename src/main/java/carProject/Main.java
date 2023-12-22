@@ -43,9 +43,10 @@ public class Main {
        
     
        
-       
+        boolean notexit=true;
 
-       while(true) {
+
+       while(notexit) {
        System.out.println("===============================================================");
 
 		System.out.println("Welcome to the Application!");
@@ -776,7 +777,9 @@ public class Main {
 		     age=scanner.nextLine();
 	  userList= um.add(username, password, email, age,userList);	  
 	}
-
+       if(p==3) {
+			notexit=false;
+		}
 }
        
        }
