@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class OrderedMethods {
+    private static final Logger LOGGER = Logger.getLogger(OrderedMethods.class.getName());
 
 	public static int countorder(List<Product> orderedProducts) {
 		int i=0;
