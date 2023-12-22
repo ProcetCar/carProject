@@ -3,7 +3,6 @@ name: GitHub Actions Maven Build Example
 on:
   push:
     branches: [ master ] 
-
 jobs:
   build-on-ubuntu:
     # The type of runner that the job will run on
