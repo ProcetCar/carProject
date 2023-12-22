@@ -52,32 +52,29 @@ public class ProductMethods {
 		
 	}
 	public List<Product> deleteproducts(List<Product> productlist, int id) {
-		 int i=0;
-		for (Product product : productlist) {
-             if (product.getid()==id) {
-            	 productlist.remove(product);
-            	 System.out.println("deleted successfully");
-            	 System.out.println("============================================================");
-
-            	 break;
-             }
-         }
-		 for (Product product : productlist) {
-           i++;
-           product.setid(i);
-         }
-				return productlist;
-	}
-	public List<Product> addproducts(List<Product> productlist,String productname, String description, double price,
-			String category, String available ) {
-	 	  int id=countProducts(productlist);
-		productlist.add(new Product(id,productname,description,price,category,available,""));
-		System.out.println("==========================================================================");
-		System.out.println("added successfully");
-		System.out.println("==========================================================================");
-
-		return productlist;
-	}
+        int i = 0;
+        for (Product product : productlist) {
+            if (product.getid() == id) {
+                productlist.remove(product);
+                LOGGER.info("Deleted successfully");
+                LOGGER.info("============================================================");
+                break;
+            }
+        }
+        for (Product product : productlist) {
+            i++;
+            product.setid(i);
+        }
+        return productlist;
+    }
+	 public List<Product> addproducts(List<Product> productlist, String productname, String description, double price, String category, String available) {
+        int id = countProducts(productlist);
+        productlist.add(new Product(id, productname, description, price, category, available, ""));
+        LOGGER.info("==========================================================================");
+        LOGGER.info("Added successfully");
+        LOGGER.info("==========================================================================");
+        return productlist;
+    }
 	public List<Product> deletecategory(List<Product> productlist, String string) {
 		List<Product> toRemove = new ArrayList<>();
     for (Product product : productlist) {
@@ -229,23 +226,21 @@ for (Product product : orderedProducts) {
 
 
 
-	public int searchproductname(List<Product> productlist, String nameproduct) {
-		int id = 0;
-		for (Product product : productlist) {
-		   
-			if(product.getName().equalsIgnoreCase(nameproduct)) {
-               id=product.getid();
-				 System.out.println("Name: " + product.getName());
-			        System.out.println("Description: " + product.getDescription());
-			        System.out.println("Category: " + product.getCategory());
-			        System.out.println("Price: " + product.getPrice());
-			        openimage(product.getimage());
-
-			        break;
-			}
-		}
-		return id;
-	}
+public int searchproductname(List<Product> productlist, String nameproduct) {
+        int id = 0;
+        for (Product product : productlist) {
+            if (product.getName().equalsIgnoreCase(nameproduct)) {
+                id = product.getid();
+                LOGGER.info("Name: " + product.getName());
+                LOGGER.info("Description: " + product.getDescription());
+                LOGGER.info("Category: " + product.getCategory());
+                LOGGER.info("Price: " + product.getPrice());
+                openimage(product.getimage());
+                break;
+            }
+        }
+        return id;
+    }
 
 
 
