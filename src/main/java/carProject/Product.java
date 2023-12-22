@@ -68,11 +68,11 @@ public class Product {
 
 
     public void displayProductDetails() {
-        System.out.println("Name: " + name);
-        System.out.println("Description: " + description);
-        System.out.println("Category: " + category);
-        System.out.println("Price: " + price);
-        System.out.println("Availability: " + available);
+        LOGGER.info("Name: " + name);
+        LOGGER.info("Description: " + description);
+        LOGGER.info("Category: " + category);
+        LOGGER.info("Price: " + price);
+        LOGGER.info("Availability: " + available);
 }
 
 
