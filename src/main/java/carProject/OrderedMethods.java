@@ -75,57 +75,45 @@ return order;
 		return s;
 
 	}
+    public static void vieworder(List<Order> requests, int id_customer) {
+        ProductMethods pm = new ProductMethods();
 
-	public static void vieworder(List<Order> requests,int id_customer) {
-		    ProductMethods pm=new ProductMethods() ;
-
-		 for (Order request : requests) {
-        if(request.getCustomerid()==id_customer) {
-     	   System.out.println("=====================================================");
-    	   System.out.println("id:"+request.getOrderId());
-    		 for (Product product : request.getOrderedProducts()){
-				 System.out.println("Name: " + product.getName());
-    		   }
-    		 System.out.println("total price:"+pm.totalprice(request.getOrderedProducts()));
-    	   System.out.println("Date:"+request.getOrderDate());
-    	   System.out.println("status:"+request.getOrderStatus());
-    	  
-     	   System.out.println("=====================================================");
-  
+        for (Order request : requests) {
+            if (request.getCustomerid() == id_customer) {
+                LOGGER.info("=====================================================");
+                LOGGER.info("id:" + request.getOrderId());
+                for (Product product : request.getOrderedProducts()) {
+                    LOGGER.info("Name: " + product.getName());
+                }
+                LOGGER.info("total price:" + pm.totalprice(request.getOrderedProducts()));
+                LOGGER.info("Date:" + request.getOrderDate());
+                LOGGER.info("status:" + request.getOrderStatus());
+                LOGGER.info("=====================================================");
+            }
         }
-		
-	}
-	}
-	
-	
-	public static void vieworder(List<Order> requests) {
-	    ProductMethods pm=new ProductMethods() ;
+    }
 
-	 for (Order request : requests) {
-    
- 	   System.out.println("=====================================================");
-		 System.out.println("order id: " + request.getOrderid());
-
-	   System.out.println("for custmer with id:"+request.getCustomerid());
-		 for (Product product : request.getOrderedProducts()){
-			 System.out.println("Name: " + product.getName());
-		   }
-		 System.out.println("total price:"+pm.totalprice(request.getOrderedProducts()));
-	   System.out.println("Date:"+request.getOrderDate());
-	   System.out.println("status:"+request.getOrderStatus());
-	   System.out.println("Email:"+request.getEmail());
-	   System.out.println("city:"+request.getCity());
-	   System.out.println("street:"+request.getStreet());
- 	   System.out.println("=====================================================");
-    
-    
 	
-}
-	 
-	 
-	 
-	 
-}
+	
+public static void vieworder(List<Order> requests) {
+        ProductMethods pm = new ProductMethods();
+
+        for (Order request : requests) {
+            LOGGER.info("=====================================================");
+            LOGGER.info("order id: " + request.getOrderid());
+            LOGGER.info("for customer with id:" + request.getCustomerid());
+            for (Product product : request.getOrderedProducts()) {
+                LOGGER.info("Name: " + product.getName());
+            }
+            LOGGER.info("total price:" + pm.totalprice(request.getOrderedProducts()));
+            LOGGER.info("Date:" + request.getOrderDate());
+            LOGGER.info("status:" + request.getOrderStatus());
+            LOGGER.info("Email:" + request.getEmail());
+            LOGGER.info("city:" + request.getCity());
+            LOGGER.info("street:" + request.getStreet());
+            LOGGER.info("=====================================================");
+        }
+    }
 
 	public static List<Order> checkRequest(List<Order> requests) {
 		String status="";
