@@ -1,6 +1,7 @@
 package carProject;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Product {
     private String name;
