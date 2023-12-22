@@ -116,23 +116,23 @@ public List<User> updateUser(List<User> userList, int id, String username, Strin
 		return null;
 	
 	}
-	public void searchuser(List<User> userList, String name) {
-    	 System.out.println("==================================================================");
+public void searchuser(List<User> userList, String name) {
+        LOGGER.info("==================================================================");
 
-		for (User user : userList) {
-           if (user.getName().equalsIgnoreCase(name)) {
-  	     	 System.out.println("Id: "+user.getName());
-           	 System.out.println("username: "+user.getName());
-           	 System.out.println("email: "+user.getEmail());
-           	 System.out.println("password: "+user.getPassword());
-           	 System.out.println("Age: "+user.getAge());
-           	 //System.out.println("Type: "+user.gettype());
-           }
-           
-       }
-    	 System.out.println("==================================================================");
+        for (User user : userList) {
+            if (user.getName().equalsIgnoreCase(name)) {
+                LOGGER.info("Id: " + user.getid());
+                LOGGER.info("Username: " + user.getName());
+                LOGGER.info("Email: " + user.getEmail());
+                LOGGER.info("Password: " + user.getPassword());
+                LOGGER.info("Age: " + user.getAge());
+                //LOGGER.info("Type: " + user.gettype()); // Uncomment if you need to log user type
+            }
+        }
 
-	}
+        LOGGER.info("==================================================================");
+    }
+
 	
 
 }
