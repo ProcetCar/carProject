@@ -8,7 +8,7 @@ public class LOGIN {
     private static final Logger LOGGER = Logger.getLogger(LOGIN.class.getName());
     private String enteredEmail;
     private String enteredPassword;
-    private static String tyu = "";
+    private  String tyu = "";
 
     public boolean run(int p) {
         return p == 1;
