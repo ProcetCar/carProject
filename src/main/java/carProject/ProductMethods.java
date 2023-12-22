@@ -8,10 +8,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 
 public class ProductMethods {
-   
+       private static final Logger LOGGER = Logger.getLogger(ProductMethods.class.getName());
+
     
     public ProductMethods() {
 		super();
@@ -88,19 +90,14 @@ public class ProductMethods {
 
 	}
 	public void printproducts(List<Product> productlist) {
-      	 System.out.println("==================================================================");
+        LOGGER.info("==================================================================");
+        for (Product product : productlist) {
+            String s = String.valueOf(product.getid()) + ". " + "product name: " + product.getName();
+            LOGGER.info(s);
+        }
+        LOGGER.info("==================================================================");
+    }
 
-		 for (Product product : productlist) {
-
-                  
-	        // String s=String.valueOf(product.getid())+". "+"product name: "+product.getName()+", "+"product Description: "+product.getDescription()+", "+"product Category: "+product.getCategory()+", "+"product price: "+product.getPrice()+", "+"product Available: "+product.getAvailable();
-	            	String s=String.valueOf(product.getid())+". "+"product name: "+product.getName();
-			 System.out.println(s);
-	            
-	         }	
-       	 System.out.println("==================================================================");
-
-	}
 	public int countProducts(List<Product> productlist) {
 		int i=0;
 		 for (Product product : productlist) {
@@ -128,20 +125,17 @@ public Product informationProduct(List<Product> productlist,int id) {
 
 
 
-	public void viewproductCategory(List<Product> productlist, String category) {
-     	 System.out.println("==================================================================");
-
-		for (Product product : productlist) {
-           if(product.getCategory().equalsIgnoreCase(category)) {
-        	  // String s=String.valueOf(product.getid())+". "+"product name: "+product.getName()+", "+"product Description: "+product.getDescription()+", "+"product Category: "+product.getCategory()+", "+"product price: "+product.getPrice()+", "+"product Available: "+product.getAvailable();
-          	  String s=String.valueOf(product.getid())+". "+"product name: "+product.getName();
-        	   System.out.println(s);
-}
-		}
-     	 System.out.println("==================================================================");
-
-			
-	}
+	
+    public void viewproductCategory(List<Product> productlist, String category) {
+        LOGGER.info("==================================================================");
+        for (Product product : productlist) {
+            if (product.getCategory().equalsIgnoreCase(category)) {
+                String s = String.valueOf(product.getid()) + ". " + "product name: " + product.getName();
+                LOGGER.info(s);
+            }
+        }
+        LOGGER.info("==================================================================");
+    }
 	
 
 
@@ -156,21 +150,19 @@ public Product informationProduct(List<Product> productlist,int id) {
         for (Product product : productlist) {
             uniqueCategories.add(product.getCategory());
         }
-      System.out.println("==================================================================");
-  	String[] cate = new String[3];
-int i=0;
-int j=i+1;
+        LOGGER.info("==================================================================");
+        String[] cate = new String[uniqueCategories.size()];
+        int i = 0;
+        int j = i + 1;
         for (String category : uniqueCategories) {
-        	System.out.print(j+". ");
-            System.out.println(category);
-            cate[i]=category;
+            LOGGER.info(j + ". " + category);
+            cate[i] = category;
             i++;
-            j=i+1;
+            j = i + 1;
         }
-      System.out.println("==================================================================");
-
-		return cate;
-	}
+        LOGGER.info("==================================================================");
+        return cate;
+    }
 
 
 
@@ -196,21 +188,20 @@ int j=i+1;
 		
 		return productlist2;
 	}
-	public  boolean searchproduct(List<Product> productlist, int id) {
-
-		for (Product product : productlist) {
-			if(product.getid()==id) {
-				 System.out.println("Name: " + product.getName());
-			        System.out.println("Description: " + product.getDescription());
-			        System.out.println("Category: " + product.getCategory());
-			        System.out.println("Price: " + product.getPrice());
-			        openimage(product.getimage());
-			        return true;
-			}
+	public boolean searchproduct(List<Product> productlist, int id) {
+        for (Product product : productlist) {
+            if (product.getid() == id) {
+                LOGGER.info("Name: " + product.getName());
+                LOGGER.info("Description: " + product.getDescription());
+                LOGGER.info("Category: " + product.getCategory());
+                LOGGER.info("Price: " + product.getPrice());
+                openimage(product.getimage());
+                return true;
+            }
         }
-		return false;
-		
-	}
+        return false;
+    }
+
 	
 	
 		
@@ -263,22 +254,19 @@ for (Product product : orderedProducts) {
 
 
 
-	public void openimage(String imagePath) {
-		// Check if Desktop is supported on the current platform
-	       if (Desktop.isDesktopSupported()) {
-	           Desktop desktop = Desktop.getDesktop();
-	           try {
-	               File imageFile = new File(imagePath);
-	               desktop.open(imageFile);
-
-	           } catch (IOException e) {
-	               e.printStackTrace();
-	           }
-	       } else {
-	           System.out.println("Desktop not supported.");
-	       }
-		
-	}
+	 public void openimage(String imagePath) {
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                File imageFile = new File(imagePath);
+                desktop.open(imageFile);
+            } catch (IOException e) {
+                LOGGER.severe("Error opening image: " + e.getMessage());
+            }
+        } else {
+            LOGGER.warning("Desktop not supported.");
+        }
+    }
 	
 	
 }
