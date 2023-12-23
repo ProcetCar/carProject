@@ -11,7 +11,7 @@
         <maven.compiler.target>7</maven.compiler.target>
         <sonar.organization>caracc-project</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.exclusions>**/carProject/Main.java</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>**CarProject/Main.class</sonar.coverage.exclusions>
     </properties>
    <dependencies>
 	  
