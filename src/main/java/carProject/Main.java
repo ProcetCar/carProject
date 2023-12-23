@@ -674,7 +674,7 @@ public class Main {
 								 SendMail.getSendEmail("The product you ordered will be installed on the date: "+date,EMail); 
        						    OrderedMethods.vieworder(request);
 
-						} catch (ParseException e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
                   
@@ -743,7 +743,7 @@ public class Main {
 										 SendMail.getSendEmail("The product you ordered will be installed on the date: "+date,EMail); 
 		       						    OrderedMethods.vieworder(request);
 
-								} catch (ParseException e) {
+								} catch (Exception e) {
 									e.printStackTrace();
 								}
                               
