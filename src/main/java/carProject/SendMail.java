@@ -69,11 +69,9 @@ public class SendMail {
             Transport.send(message);
             logger.log(Level.INFO,"Sent message successfully....");
 
-        } catch(MessagingException mex)
-
-        {
-            mex.printStackTrace();
-        }
+        }  catch(Exception e) {
+  e.printStackTrace(); // Sensitive
+}
 
     }
 
