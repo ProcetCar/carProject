@@ -1,6 +1,5 @@
 package carProject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,15 +8,13 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+
 
 
 
 public class Main {
+	private static final String SEPARATOR = "==============================================================";
+
 
 
 	
@@ -46,7 +43,7 @@ public class Main {
        
 
        while(notexit) {
-       logger.info("===============================================================");
+       logger.info("SEPARATOR=");
 
 		logger.info("Welcome to the Application!");
 		logger.info("Please select an option:");
@@ -54,17 +51,17 @@ public class Main {
 		logger.info("2. signup");
 	       	logger.info("3. exit");
 
-		logger.info("===============================================================");
+		logger.info("SEPARATOR=");
 
 		Scanner scanner=new Scanner(System.in);
 		int p=scanner.nextInt();
 		if(p==1) {
-			logger.info("===============================================================");
+			logger.info("SEPARATOR=");
 
 			logger.info("Navigating to the login page...");
 			logger.info("            === Login Page ===");
 			logger.info("- Please enter your email and password:");
-			logger.info("===============================================================");
+			logger.info("SEPARATOR=");
 			
 			logger.info("Email: ");
 	 	    email=scanner.nextLine();
@@ -102,7 +99,7 @@ public class Main {
 				logger.info("5. view your request orders");
 				logger.info("6. logout");
 
-				logger.info("===============================================================");
+				logger.info("SEPARATOR=");
 
 				 scanner=new Scanner(System.in);
 			     int d=scanner.nextInt();
@@ -113,7 +110,7 @@ public class Main {
 					logger.info("Please select an option:");
 					logger.info("1. To view a specific product");
 					logger.info("2. go to home page");
-    				logger.info("===============================================================");
+    				logger.info("SEPARATOR=");
 
 					 scanner=new Scanner(System.in);
 				     int k=scanner.nextInt();
@@ -122,12 +119,12 @@ public class Main {
           					scanner=new Scanner(System.in);
        				         int y=scanner.nextInt();
        				        boolean m=pm.searchproduct(productlist, y);
-            				logger.info("===============================================================");
+            				logger.info("SEPARATOR=");
 
        				     logger.info("Please select an option:");
      					logger.info("1. add to my chart");
      					logger.info("2. go to home page");
-        				logger.info("===============================================================");
+        				logger.info("SEPARATOR=");
 
      					scanner=new Scanner(System.in);
   				        int b =scanner.nextInt();
@@ -135,7 +132,7 @@ public class Main {
   				        	 
   				        	logger.info("Navigating to the add to chart page...");
   							logger.info("            === add to chart page ===");
-  		    				logger.info("===============================================================");
+  		    				logger.info("SEPARATOR=");
                              
   				        	product=pm.informationProduct(productlist,y );
   				        	orderedProducts.add(product);
@@ -144,17 +141,17 @@ public class Main {
   				        	double total=pm.totalprice(orderedProducts);
   				        	logger.info("product Price= "+product.getPrice());
 				        	logger.info("total= "+total);  		    		
-				        	logger.info("===============================================================");
-				        	logger.info("===============================================================");
+				        	logger.info("SEPARATOR=");
+				        	logger.info("SEPARATOR=");
 				        	 logger.info("Please select an option:");
 								logger.info("1. make purchase");
 								logger.info("2. go to home page");
-			   				logger.info("===============================================================");
+			   				logger.info("SEPARATOR=");
 
 								scanner=new Scanner(System.in);
 							        int u =scanner.nextInt();
 							        if(u==1) {
-							        	logger.info("===============================================================");
+							        	logger.info("SEPARATOR=");
 
 					  				     logger.info("Please enter you email ,city ,street");
 							        	logger.info("email: ");
@@ -180,7 +177,7 @@ public class Main {
 									  String status="order is "+order.getOrderStatus();
 									  SendMail.getSendEmail(status, user.getEmail()); 
 									  logger.info("Your request has been sent. We will contact you ");
-							        	logger.info("===============================================================");
+							        	logger.info("SEPARATOR=");
 
 							        } 
   				         }
@@ -191,12 +188,12 @@ public class Main {
 					
 				}
 				if(d==2){
-			  logger.info("===============================================================");
+			  logger.info("SEPARATOR=");
 				String[] cate = pm.printcategory(productlist);
 				logger.info("Please select an option:");
 					logger.info("1. view product in specific catogery");
 					logger.info("2. go to home page");
-				logger.info("===============================================================");
+				logger.info("SEPARATOR=");
 				scanner=new Scanner(System.in);
 		        int a1 =scanner.nextInt();
 		        if(a1==1) {
@@ -219,7 +216,7 @@ public class Main {
 				        logger.info("Please select an option:");
 						logger.info("1. To view a specific product");
 						logger.info("2. go to home page");
-	    				logger.info("===============================================================");
+	    				logger.info("SEPARATOR=");
 
 						 scanner=new Scanner(System.in);
 					     int k=scanner.nextInt();
@@ -228,12 +225,12 @@ public class Main {
 	          					scanner=new Scanner(System.in);
 	       				         int y=scanner.nextInt();
 	       				        pm.searchproduct(productlist, y);
-	    	    	     logger.info("===============================================================");
+	    	    	     logger.info("SEPARATOR=");
 
 	       				     logger.info("Please select an option:");
 	     					logger.info("1. add to my chart");
 	     					logger.info("2. go to home page");
-	        				logger.info("===============================================================");
+	        				logger.info("SEPARATOR=");
 
 	     					scanner=new Scanner(System.in);
 	  				        int b2 =scanner.nextInt();
@@ -241,7 +238,7 @@ public class Main {
 	  				        	 
 	  				        	logger.info("Navigating to the add to chart page...");
 	  							logger.info("            === add to chart page ===");
-	  		    				logger.info("===============================================================");
+	  		    				logger.info("SEPARATOR=");
 
 	  				        	product=pm.informationProduct(productlist,y );
 	  				        	orderedProducts.add(product);
@@ -250,16 +247,16 @@ public class Main {
 	  				        	logger.info("product Price= "+product.getPrice());
 
 					        	logger.info("total= "+total);	  	
-					        	logger.info("===============================================================");
+					        	logger.info("SEPARATOR=");
 					        	 logger.info("Please select an option:");
 									logger.info("1. make purchase");
 									logger.info("2. go to home page");
-				   				logger.info("===============================================================");
+				   				logger.info("SEPARATOR=");
 
 									scanner=new Scanner(System.in);
 								        int u =scanner.nextInt();
 								        if(u==1) {
-								        	logger.info("===============================================================");
+								        	logger.info("SEPARATOR=");
 
 						  				     logger.info("Please enter you email ,city ,street");
 								        	logger.info("email: ");
@@ -285,7 +282,7 @@ public class Main {
 										  String status="order is "+order.getOrderStatus();
 										  SendMail.getSendEmail(status, user.getEmail()); 
 										  logger.info("Your request has been sent. We will contact you ");
-								        	logger.info("===============================================================");
+								        	logger.info("SEPARATOR=");
 
 								        }
 								    
@@ -298,7 +295,7 @@ public class Main {
 
 				}
 				if(d==3) {
-	    				logger.info("===============================================================");
+	    				logger.info("SEPARATOR=");
 
 				logger.info("enter the product name: ");
 
@@ -307,12 +304,12 @@ public class Main {
 					 String nameproduct=scanner.nextLine();	
 					 if(pm.isexsist(productlist, nameproduct)) {
 					int id= pm.searchproductname(productlist,nameproduct);
-    				logger.info("===============================================================");
+    				logger.info("SEPARATOR=");
 
   				     logger.info("Please select an option:");
 					logger.info("1. add to my chart");
 					logger.info("2. go to home page");
-   				logger.info("===============================================================");
+   				logger.info("SEPARATOR=");
 
 					scanner=new Scanner(System.in);
 				        int b2 =scanner.nextInt();
@@ -320,7 +317,7 @@ public class Main {
 				        	 
 				        	logger.info("Navigating to the add to chart page...");
 							logger.info("            === add to chart page ===");
-		    				logger.info("===============================================================");
+		    				logger.info("SEPARATOR=");
 
 				        	product=pm.informationProduct(productlist,id );
 				        	orderedProducts.add(product);
@@ -328,18 +325,18 @@ public class Main {
 				        	double total=pm.totalprice(orderedProducts);
 				        	logger.info("product Price= "+product.getPrice());
 				        	logger.info("total= "+total);
-		    				logger.info("===============================================================");
-				        			logger.info("===============================================================");
+		    				logger.info("SEPARATOR=");
+				        			logger.info("SEPARATOR=");
 
 				  				     logger.info("Please select an option:");
 									logger.info("1. make purchase");
 									logger.info("2. go to home page");
-				   				logger.info("===============================================================");
+				   				logger.info("SEPARATOR=");
 
 									scanner=new Scanner(System.in);
 								        int u =scanner.nextInt();
 								        if(u==1) {
-								        	logger.info("===============================================================");
+								        	logger.info("SEPARATOR=");
 
 						  				     logger.info("Please enter you email ,city ,street");
 								        	logger.info("email: ");
@@ -364,7 +361,7 @@ public class Main {
 										  String status="order is "+order.getOrderStatus();
 										  SendMail.getSendEmail(status, user.getEmail()); 
 										  logger.info("Your request has been sent. We will contact you ");
-								        	logger.info("===============================================================");
+								        	logger.info("SEPARATOR=");
       
 								        }
 								        	
@@ -375,7 +372,7 @@ public class Main {
 					
 					 
 					 }
-	    		logger.info("===============================================================");
+	    		logger.info("SEPARATOR=");
 
 					}
 				
@@ -393,7 +390,7 @@ public class Main {
     				logger.info("4. edit age");
     				logger.info("5. logout");
 
-    				logger.info("===============================================================");
+    				logger.info("SEPARATOR=");
 
     				 scanner=new Scanner(System.in);
     				int c=scanner.nextInt();
@@ -458,7 +455,7 @@ public class Main {
 			else if(user.gettype().equals("Admin")) {
 				boolean t=true;
 				while(t) {
-				logger.info("===================================================================================");
+				logger.info("SEPARATOR=====================");
 
 				logger.info("Navigating to the Admin page...");
 				logger.info("            === home page ===");
@@ -468,13 +465,13 @@ public class Main {
 				logger.info("3. Manage orders ");
 				logger.info("4. log out");
 
-				logger.info("===================================================================================");
+				logger.info("SEPARATOR=====================");
 
 				 scanner=new Scanner(System.in);
  				int c=scanner.nextInt();
  				if(c==1) {
  					pm.printproducts(productlist);
- 					logger.info("===================================================================================");
+ 					logger.info("SEPARATOR=====================");
  					logger.info("Navigating to the product page...");
  					logger.info("            === product page ===");
 
@@ -485,12 +482,12 @@ public class Main {
  					logger.info("4. update product");
  					logger.info("5.view details about specific product");
  					logger.info("6. go to home page");
- 					logger.info("===================================================================================");
+ 					logger.info("SEPARATOR=====================");
 
  					 scanner=new Scanner(System.in);
  	 				int k=scanner.nextInt();
                        if (k==1) {
-           				logger.info("===================================================================================");
+           				logger.info("SEPARATOR=====================");
 
            				logger.info("enter Product Name , description ,price , category , available about product");
            				logger.info("Product Name: ");
@@ -580,7 +577,7 @@ public class Main {
 
  				}
  				if(c==2) {
- 					logger.info("===================================================================================");
+ 					logger.info("SEPARATOR=====================");
  					logger.info("Navigating to the Users page...");
  					logger.info("            === Users page ===");
 
@@ -590,7 +587,7 @@ public class Main {
  					logger.info("3. delete user");
  					logger.info("4. search user ");
  					logger.info("5. go to home page");
- 					logger.info("===================================================================================");
+ 					logger.info("SEPARATOR=====================");
  					  scanner=new Scanner(System.in);
    	 				int l=scanner.nextInt(); 
    	 				if(l==1) {
@@ -613,7 +610,7 @@ public class Main {
    	 		    logger.info("age: ");
    	 		     age=scanner.nextLine();
    	 	  userList= um.add(username, password, email2, age,userList);	
-			logger.info("===================================================================================");
+			logger.info("SEPARATOR=====================");
 
    	 				}
    	 				if(l==3) {
@@ -622,7 +619,7 @@ public class Main {
               	   scanner=new Scanner(System.in);
   	 				int e=scanner.nextInt(); 
    	 					userList=um.deleteuser(userList, e);
-   	 					logger.info("===================================================================================");
+   	 					logger.info("SEPARATOR=====================");
 
    	 				}
    	 				if(l==4) {
@@ -635,14 +632,14 @@ public class Main {
  				}
  				
  				if(c==3) {
- 					logger.info("===================================================================================");
+ 					logger.info("SEPARATOR=====================");
  					logger.info(" === request orders page ===");
  					logger.info("Please select an option:");
  					logger.info("1. view orders");
  					logger.info("2. check oreders ");
  					logger.info("3. edit order appointments ");
  					logger.info("4. go to home page");
- 					logger.info("===================================================================================");
+ 					logger.info("SEPARATOR=====================");
  					  scanner=new Scanner(System.in);
    	 				int m=scanner.nextInt(); 
    	 				if(m==1) {
@@ -653,7 +650,7 @@ public class Main {
 					 OrderedMethods.vieworder(request);
    	 				}
    	 				if(m==3) {
-   	 				logger.info("===============================================================");
+   	 				logger.info("SEPARATOR=");
 					logger.info("            === schedule appointments page ===");
 					 OrderedMethods.vieworder(request);
 					 logger.info("enter id order you want to schedule appointments :");
@@ -704,7 +701,7 @@ public class Main {
 					logger.info("1. view all requests");
 					logger.info("2. schedule appointments");
 					logger.info("3. logout");
-					logger.info("===============================================================");
+					logger.info("SEPARATOR=");
 					 scanner=new Scanner(System.in);
 				     int d=scanner.nextInt();
 				     if(d==1) {
@@ -722,7 +719,7 @@ public class Main {
 				     }
 				}
 				     if(d==2) {
-							logger.info("===============================================================");
+							logger.info("SEPARATOR=");
 							logger.info("            === schedule appointments page ===");
 							 OrderedMethods.vieworder(request);
 							 logger.info("enter id order you want to schedule appointments :");
