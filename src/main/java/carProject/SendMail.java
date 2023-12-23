@@ -70,10 +70,13 @@ public class SendMail {
             logger.log(Level.INFO,"Sent message successfully....");
 
         }  catch(Exception e) {
-  e.printStackTrace(); // Sensitive
+   
+            logger.log(Level.SEVERE, "Error sending email: " + e.getMessage());
+      
+        }
 }
 
     }
 
 
-}
+
