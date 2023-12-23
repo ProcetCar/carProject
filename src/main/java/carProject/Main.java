@@ -274,9 +274,7 @@ public class Main {
 											   Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 										  
 										  request.add(order);
-										//  boolean f=OrderedMethods.ifAvailable(order);
-										//  order=OrderedMethods.changeStatus(order,f);
-										 // String status=OrderedMethods.message(f);
+										
 										  String status="order is "+order.getOrderStatus();
 										  SendMail.getSendEmail(status, user.getEmail()); 
 										  logger.info("Your request has been sent. We will contact you ");
@@ -353,9 +351,7 @@ public class Main {
 											   int installer=um.id_installer(userList,Time);
 											   Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 										  request.add(order);
-										  //boolean f=OrderedMethods.ifAvailable(order);
-										//  order=OrderedMethods.changeStatus(order,f);
-										 // String status=OrderedMethods.message(f);
+										 
 										  String status="order is "+order.getOrderStatus();
 										  SendMail.getSendEmail(status, user.getEmail()); 
 										  logger.info("Your request has been sent. We will contact you ");
