@@ -675,7 +675,7 @@ public class Main {
        						    OrderedMethods.vieworder(request);
 
 						} catch (Exception e) {
-							e.printStackTrace();
+                                         logger.log(Level.SEVERE, "Error sending email: " + e.getMessage());
 						}
                   
    	 				}
@@ -744,7 +744,8 @@ public class Main {
 		       						    OrderedMethods.vieworder(request);
 
 								} catch (Exception e) {
-									e.printStackTrace();
+									            logger.log(Level.SEVERE, "Error sending email: " + e.getMessage());
+
 								}
                               
 
