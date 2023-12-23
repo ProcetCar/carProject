@@ -675,7 +675,7 @@ public class Main {
        						    OrderedMethods.vieworder(request);
 
 						} catch (Exception e) {
-                                         logger.log(Level.SEVERE, "Error sending email: " + e.getMessage());
+							        logger.info("Error parsing date:");
 						}
                   
    	 				}
@@ -744,7 +744,7 @@ public class Main {
 		       						    OrderedMethods.vieworder(request);
 
 								} catch (Exception e) {
-									            logger.log(Level.SEVERE, "Error sending email: " + e.getMessage());
+							        logger.info("Error parsing date:");
 
 								}
                               
