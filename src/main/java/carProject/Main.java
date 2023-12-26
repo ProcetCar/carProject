@@ -30,6 +30,89 @@ public class Main {
 	 static Logger logger =  Logger.getLogger(Main.class.getName());
 private static final String SEPARATOR = "===============================================================";
 
+
+public static void print1(){
+    
+  			
+                                            	logger.info("Navigating to the product page...");
+					logger.info("            === product page ===");
+					pm.printproducts(productlist);
+					logger.info("Please select an option:");
+					logger.info("1. To view a specific product");
+					logger.info("2. go to home page");
+    				logger.info(SEPARATOR);
+
+              Scanner scanner = new Scanner(System.in);
+				     int k=scanner.nextInt();
+                          if(k==1) {
+          					logger.info("enter the product number");
+          					scanner=new Scanner(System.in);
+       				         int y=scanner.nextInt();
+       				        boolean m=pm.searchproduct(productlist, y);
+            				logger.info(SEPARATOR);
+
+      logger.info("Please select an option:");
+					logger.info("1. add to my chart");
+					logger.info("2. go to home page");
+                                            logger.info(SEPARATOR);
+     					scanner=new Scanner(System.in);
+  				        int b =scanner.nextInt();
+  				         if(b==1) {
+  				        	 
+  				        	logger.info("Navigating to the add to chart page...");
+  							logger.info("            === add to chart page ===");
+  		    				logger.info(SEPARATOR);
+                             
+  				        	product=pm.informationProduct(productlist,y );
+  				        	orderedProducts.add(product);
+  				        	user.setOrderedProducts(orderedProducts);
+  				        	pm.countProducts(orderedProducts);
+  				        	double total=pm.totalprice(orderedProducts);
+  				        	logger.info("product Price= "+product.getPrice());
+				        	logger.info("total= "+total);  		    		
+				        	logger.info(SEPARATOR);
+				        	logger.info(SEPARATOR);
+				        	 logger.info("Please select an option:");
+								logger.info("1. make purchase");
+								logger.info("2. go to home page");
+			   				logger.info(SEPARATOR);
+
+								scanner=new Scanner(System.in);
+							        int u =scanner.nextInt();
+							        if(u==1) {
+							        	logger.info(SEPARATOR);
+
+					  				     logger.info("Please enter you email ,city ,street");
+							        	logger.info("email: ");
+									   String Email=scanner.nextLine();
+									    Email=scanner.nextLine();
+									   logger.info("city: ");
+									   String city=scanner.nextLine();
+									   logger.info("street: ");
+									   String street=scanner.nextLine();
+									   Date date=new Date();
+									   int id2= OrderedMethods.count(request);
+					  				  logger.info("chose time: 1-2 , 2-3 , 3-4");
+					  				logger.info("Time: ");
+									   String Time=scanner.nextLine();
+									    Time=scanner.nextLine();
+									   int installer=um.id_installer(userList,Time);
+									  Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
+									  
+									  request.add(order);
+									 
+									  String status="order is "+order.getOrderStatus();
+									  SendMail.getSendEmail(status, user.getEmail()); 
+									  logger.info("Your request has been sent. We will contact you ");
+							        	logger.info(SEPARATOR);
+
+							        } 
+  				         }
+                          }
+					
+
+
+}
 	public static void main(String[] args) {
 
     
@@ -84,9 +167,9 @@ private static final String SEPARATOR = "=======================================
 			
 			if(user.gettype().equals("customer")) {
 			while(login.performLogin(email, password,userList)&&islogin) {
-				logger.info( "===============================================");
+		logger.info(SEPARATOR);
 				logger.info("you login as customer");
-				logger.info("================================================");
+		logger.info(SEPARATOR);
 
 				logger.info("Navigating to the home page...");
 				logger.info("            === home page ===");
@@ -103,87 +186,8 @@ private static final String SEPARATOR = "=======================================
 				 scanner=new Scanner(System.in);
 			     int d=scanner.nextInt();
 				if(d==1) {
-					logger.info("Navigating to the product page...");
-					logger.info("            === product page ===");
-					pm.printproducts(productlist);
-					logger.info("Please select an option:");
-					logger.info("1. To view a specific product");
-					logger.info("2. go to home page");
-    				logger.info(SEPARATOR);
-
-					 scanner=new Scanner(System.in);
-				     int k=scanner.nextInt();
-                          if(k==1) {
-          					logger.info("enter the product number");
-          					scanner=new Scanner(System.in);
-       				         int y=scanner.nextInt();
-       				        boolean m=pm.searchproduct(productlist, y);
-            				logger.info(SEPARATOR);
-
-       				     logger.info("Please select an option:");
-     					logger.info("1. add to my chart");
-     					logger.info("2. go to home page");
-        				logger.info(SEPARATOR);
-
-     					scanner=new Scanner(System.in);
-  				        int b =scanner.nextInt();
-  				         if(b==1) {
-  				        	 
-  				        	logger.info("Navigating to the add to chart page...");
-  							logger.info("            === add to chart page ===");
-  		    				logger.info(SEPARATOR);
-                             
-  				        	product=pm.informationProduct(productlist,y );
-  				        	orderedProducts.add(product);
-  				        	user.setOrderedProducts(orderedProducts);
-  				        	pm.countProducts(orderedProducts);
-  				        	double total=pm.totalprice(orderedProducts);
-  				        	logger.info("product Price= "+product.getPrice());
-				        	logger.info("total= "+total);  		    		
-				        	logger.info(SEPARATOR);
-				        	logger.info(SEPARATOR);
-				        	 logger.info("Please select an option:");
-								logger.info("1. make purchase");
-								logger.info("2. go to home page");
-			   				logger.info(SEPARATOR);
-
-								scanner=new Scanner(System.in);
-							        int u =scanner.nextInt();
-							        if(u==1) {
-							        	logger.info(SEPARATOR);
-
-					  				     logger.info("Please enter you email ,city ,street");
-							        	logger.info("email: ");
-									   String Email=scanner.nextLine();
-									    Email=scanner.nextLine();
-									   logger.info("city: ");
-									   String city=scanner.nextLine();
-									   logger.info("street: ");
-									   String street=scanner.nextLine();
-									   Date date=new Date();
-									   int id2= OrderedMethods.count(request);
-					  				  logger.info("chose time: 1-2 , 2-3 , 3-4");
-					  				logger.info("Time: ");
-									   String Time=scanner.nextLine();
-									    Time=scanner.nextLine();
-									   int installer=um.id_installer(userList,Time);
-									  Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
-									  
-									  request.add(order);
-									  //boolean f=OrderedMethods.ifAvailable(order);
-									  //order=OrderedMethods.changeStatus(order,f);
-									 // String status=OrderedMethods.message(f);
-									  String status="order is "+order.getOrderStatus();
-									  SendMail.getSendEmail(status, user.getEmail()); 
-									  logger.info("Your request has been sent. We will contact you ");
-							        	logger.info(SEPARATOR);
-
-							        } 
-  				         }
-                          }
-					
-
-
+				
+                               print1();
 					
 				}
 				if(d==2){
@@ -212,79 +216,7 @@ private static final String SEPARATOR = "=======================================
 				        	pm.viewproductCategory(productlist, "Exterior");
 
 				        }
-				        logger.info("Please select an option:");
-						logger.info("1. To view a specific product");
-						logger.info("2. go to home page");
-	    				logger.info(SEPARATOR);
-
-						 scanner=new Scanner(System.in);
-					     int k=scanner.nextInt();
-	                          if(k==1) {
-	          					logger.info("enter the product number");
-	          					scanner=new Scanner(System.in);
-	       				         int y=scanner.nextInt();
-	       				        pm.searchproduct(productlist, y);
-	    	    	     logger.info(SEPARATOR);
-
-	       				     logger.info("Please select an option:");
-	     					logger.info("1. add to my chart");
-	     					logger.info("2. go to home page");
-	        				logger.info(SEPARATOR);
-
-	     					scanner=new Scanner(System.in);
-	  				        int b2 =scanner.nextInt();
-	  				         if(b2==1) {
-	  				        	 
-	  				        	logger.info("Navigating to the add to chart page...");
-	  							logger.info("            === add to chart page ===");
-	  		    				logger.info(SEPARATOR);
-
-	  				        	product=pm.informationProduct(productlist,y );
-	  				        	orderedProducts.add(product);
-	  				        	pm.countProducts(orderedProducts);
-	  				        	double total=pm.totalprice(orderedProducts);
-	  				        	logger.info("product Price= "+product.getPrice());
-
-					        	logger.info("total= "+total);	  	
-					        	logger.info(SEPARATOR);
-					        	 logger.info("Please select an option:");
-									logger.info("1. make purchase");
-									logger.info("2. go to home page");
-				   				logger.info(SEPARATOR);
-
-									scanner=new Scanner(System.in);
-								        int u =scanner.nextInt();
-								        if(u==1) {
-								        	logger.info(SEPARATOR);
-
-						  				     logger.info("Please enter you email ,city ,street");
-								        	logger.info("email: ");
-										   String Email=scanner.nextLine();
-										    Email=scanner.nextLine();
-										   logger.info("city: ");
-										   String city=scanner.nextLine();
-										   logger.info("street: ");
-										   String street=scanner.nextLine();
-										   Date date=new Date();
-										   int id2= OrderedMethods.count(request);
-										   logger.info("chose time: 1-2 , 2-3 , 3-4");
-							  				logger.info("Time: ");
-											   String Time=scanner.nextLine();
-											    Time=scanner.nextLine();
-											   int installer=um.id_installer(userList,Time);
-											   Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
-										  
-										  request.add(order);
-										
-										  String status="order is "+order.getOrderStatus();
-										  SendMail.getSendEmail(status, user.getEmail()); 
-										  logger.info("Your request has been sent. We will contact you ");
-								        	logger.info(SEPARATOR);
-
-								        }
-								    
-	  				         }
-	                          }
+			             print1();
 		        }
 
 				        
@@ -303,11 +235,11 @@ private static final String SEPARATOR = "=======================================
 					int id= pm.searchproductname(productlist,nameproduct);
     				logger.info(SEPARATOR);
 
-  				     logger.info("Please select an option:");
+                                 logger.info("Please select an option:");
 					logger.info("1. add to my chart");
 					logger.info("2. go to home page");
-   				logger.info(SEPARATOR);
-
+                                            logger.info(SEPARATOR);
+     	
 					scanner=new Scanner(System.in);
 				        int b2 =scanner.nextInt();
 				         if(b2==1) {
@@ -426,9 +358,9 @@ private static final String SEPARATOR = "=======================================
 
                        }
                        if(c==5) {
-                    	   logger.info("=====================================================");
+		logger.info(SEPARATOR);
                     	   logger.info( "you logout successfully");
-                    	   logger.info("=====================================================");
+		logger.info(SEPARATOR);
                          islogin=false;
                 	
                 }
@@ -439,9 +371,9 @@ private static final String SEPARATOR = "=======================================
             	   OrderedMethods.vieworder(request,user.getid());
                }
                if( d==6){
-            	   logger.info("=====================================================");
+		logger.info(SEPARATOR);
             	   logger.info( "you logout successfully");
-            	   logger.info("=====================================================");
+		logger.info(SEPARATOR);
                  islogin=false; 
                }
                 
@@ -450,7 +382,7 @@ private static final String SEPARATOR = "=======================================
 			else if(user.gettype().equals("Admin")) {
 				boolean t=true;
 				while(t) {
-				logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
 
 				logger.info("Navigating to the Admin page...");
 				logger.info("            === home page ===");
@@ -460,13 +392,13 @@ private static final String SEPARATOR = "=======================================
 				logger.info("3. Manage orders ");
 				logger.info("4. log out");
 
-				logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
 
 				 scanner=new Scanner(System.in);
  				int c=scanner.nextInt();
  				if(c==1) {
  					pm.printproducts(productlist);
- 					logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
  					logger.info("Navigating to the product page...");
  					logger.info("            === product page ===");
 
@@ -477,12 +409,12 @@ private static final String SEPARATOR = "=======================================
  					logger.info("4. update product");
  					logger.info("5.view details about specific product");
  					logger.info("6. go to home page");
- 					logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
 
  					 scanner=new Scanner(System.in);
  	 				int k=scanner.nextInt();
                        if (k==1) {
-           				logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
 
            				logger.info("enter Product Name , description ,price , category , available about product");
            				logger.info("Product Name: ");
@@ -572,7 +504,7 @@ private static final String SEPARATOR = "=======================================
 
  				}
  				if(c==2) {
- 					logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
  					logger.info("Navigating to the Users page...");
  					logger.info("            === Users page ===");
 
@@ -582,7 +514,7 @@ private static final String SEPARATOR = "=======================================
  					logger.info("3. delete user");
  					logger.info("4. search user ");
  					logger.info("5. go to home page");
- 					logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
  					  scanner=new Scanner(System.in);
    	 				int l=scanner.nextInt(); 
    	 				if(l==1) {
@@ -605,7 +537,7 @@ private static final String SEPARATOR = "=======================================
    	 		    logger.info("age: ");
    	 		     age=scanner.nextLine();
    	 	  userList= um.add(username, password, email2, age,userList);	
-			logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
 
    	 				}
    	 				if(l==3) {
@@ -614,7 +546,7 @@ private static final String SEPARATOR = "=======================================
               	   scanner=new Scanner(System.in);
   	 				int e=scanner.nextInt(); 
    	 					userList=um.deleteuser(userList, e);
-   	 					logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
 
    	 				}
    	 				if(l==4) {
@@ -627,14 +559,14 @@ private static final String SEPARATOR = "=======================================
  				}
  				
  				if(c==3) {
- 					logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
  					logger.info(" === request orders page ===");
  					logger.info("Please select an option:");
  					logger.info("1. view orders");
  					logger.info("2. check oreders ");
  					logger.info("3. edit order appointments ");
  					logger.info("4. go to home page");
- 					logger.info("SEPARATOR====================");
+		logger.info(SEPARATOR);
  					  scanner=new Scanner(System.in);
    	 				int m=scanner.nextInt(); 
    	 				if(m==1) {
@@ -686,9 +618,9 @@ private static final String SEPARATOR = "=======================================
 			else if(user.gettype().equals("installer")) {
 				
 				while(login.performLogin(email, password,userList)&&islogin) {
-					logger.info( "===============================================");
+		logger.info(SEPARATOR);
 					logger.info("you login as installer");
-					logger.info("================================================");
+		logger.info(SEPARATOR);
 
 					logger.info("Navigating to the home page...");
 					logger.info("            === home page ===");
@@ -743,9 +675,9 @@ private static final String SEPARATOR = "=======================================
 
 				     }
 				     if( d==3){
-		            	   logger.info("=====================================================");
+		logger.info(SEPARATOR);
 		            	   logger.info( "you logout successfully");
-		            	   logger.info("=====================================================");
+		logger.info(SEPARATOR);
 		                 islogin=false; 
 		               }
 			}
