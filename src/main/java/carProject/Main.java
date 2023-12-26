@@ -22,8 +22,8 @@ public class Main {
 	  private static  UserMethods um=new UserMethods() ;
 
 	private static  List<Product> productlist=Mydata.listProduct();
-    private static List<Product> orderedProducts=new ArrayList<Product>();
-    private static List<Order> request=new ArrayList<Order>();
+    private static List<Product> orderedProducts=new ArrayList<>();
+    private static List<Order> request=new ArrayList<>();
 
 	private static User user=new User();
      private static Product product =new Product ();
@@ -80,7 +80,7 @@ private static final String SEPARATOR = "=======================================
 			}
 			islogin=true;
 			user=um.informationUser(userList, email) ;
-			orderedProducts=new ArrayList<Product>();
+			orderedProducts=new ArrayList<>();
 			
 			if(user.gettype().equals("customer")) {
 			while(login.performLogin(email, password,userList)&&islogin) {
