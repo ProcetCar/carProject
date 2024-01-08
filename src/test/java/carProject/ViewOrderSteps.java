@@ -29,8 +29,8 @@ public void when_chose_view_order() {
             "available",r));;
            int i= om.count(request);
     Date currentDate = new Date();
-      order=new Order(orderid,customerid,productlist,email,currentDate,city,street,"pending",2);
-     request.add(i, order);
+      order=new Order(i,customerid,productlist,email,currentDate,city,street,"pending",2);
+     request.add(order);
       
 }
 
