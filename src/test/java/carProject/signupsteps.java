@@ -16,6 +16,7 @@ public class signupsteps {
 	public static String age;
 	public LOGIN lo=new LOGIN();
  private static  List<User> userlist=Mydata.listUser();
+ private static  UserMethods um=new UserMethods() ;
 
 
 @Given("I am on the signup page")
@@ -46,6 +47,7 @@ public void i_enter_a_valid_age_as_a(String string) {
 @Then("I should be registered successfully")
 public void i_should_be_registered_successfully() {
 	User e=new User(1,username,email,password,"customer",age,"");
+	userlist=um.add(username, password, email, age, userlist);
 	userlist.add(e);
 	Assert.assertTrue(lo.checkIfRegister(email,userlist));
 	System.out.println("registered successfully");
