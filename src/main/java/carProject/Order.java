@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class Order {
 	private int orderid;
     private List<Product> orderedProducts=new ArrayList<Product>();
@@ -18,27 +19,15 @@ public class Order {
 	public int getOrderid() {
 		return orderid;
 	}
-	public void setOrderid(int orderid) {
-		this.orderid = orderid;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
+	
 	public int getCustomerid() {
 		return customerid;
 	}
-	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
-	}
-	public String getCity() {
+		public String getCity() {
 		return city;
 	}
-	public void setCity(String city) {
-		this.city = city;
-	}
+	
 	public String getStreet() {
 		return street;
 	}
@@ -48,27 +37,18 @@ public class Order {
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public int getInstaller() {
-		return installer;
-	}
+	
+	
 	public void setInstaller(int installer) {
 		this.installer = installer;
 	}
 	public Date getOrderDate() {
 		return date;
 	}
-	public void setOrderDate(Date orderDate) {
-		this.date = orderDate;
-	}
-	public int getCustomerId() {
+		public int getCustomerId() {
 		return customerid;
 	}
-	public void setCustomerId(int customerId) {
-		this.customerid = customerId;
-	}
+	
 	
 
     
@@ -89,24 +69,25 @@ public class Order {
 	}
 	public Order() {
 	}
-	public int getOrderId() {
-		return orderid;
-	}
-	public void setOrderId(int orderId) {
-		this.orderid = orderId;
-	}
+	
 	public List<Product> getOrderedProducts() {
 		return orderedProducts;
 	}
-	public void setOrderedProducts(List<Product> orderedProducts) {
-		this.orderedProducts = orderedProducts;
-	}
+	
 	public String getOrderStatus() {
 		return orderStatus;
 	}
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
+
+
+	public void setDate(Date date) {
+     this.date=date;		
+	}
+
+
+
 	
 	
 	
