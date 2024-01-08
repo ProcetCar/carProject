@@ -74,7 +74,7 @@ String r="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
 public void send_email_order_not_complete() {
 	boolean f=om.ifAvailable(order);
 	if(!f) {
-	SendMail.getSendEmail("order not complete", "sheehasamah6@gmail.com"); 
+	SendMail.getSendEmail(om.message(f), "sheehasamah6@gmail.com"); 
 
 	}
 	Assert.assertFalse(f);
@@ -83,4 +83,3 @@ public void send_email_order_not_complete() {
 
 
 }
-
