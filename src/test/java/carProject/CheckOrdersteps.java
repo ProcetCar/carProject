@@ -12,6 +12,7 @@ import io.cucumber.java.en.When;
 public class CheckOrdersteps {
 Order order=new Order();
 List<Order> request=new ArrayList<Order>();
+private static  OrderedMethods om=new OrderedMethods();
 
 	@When("order is available")
 	public void order_is_available() {
@@ -38,9 +39,9 @@ List<Order> request=new ArrayList<Order>();
 	@Then("change state {string}")
 	public void change_state(String string) {
 
-  order=OrderedMethods.changeStatus(order,true); 
+  order=om.changeStatus(order,true); 
   Assert.assertEquals(order.getOrderStatus(), string);
-	OrderedMethods.vieworder(request);
+	om.vieworder(request);
 
 	}
 
@@ -68,9 +69,9 @@ List<Order> request=new ArrayList<Order>();
 	@Then("change state order {string}")
 	public void change_state_order(String string) {
 		
-		order=OrderedMethods.changeStatus(order,false); 
+		order=om.changeStatus(order,false); 
 		  Assert.assertEquals(order.getOrderStatus(), string);
-			OrderedMethods.vieworder(request);
+			om.vieworder(request);
 
 	}
 }
