@@ -13,7 +13,6 @@
         <sonar.coverage.exclusions>**/carProject/Main.java</sonar.coverage.exclusions>
     </properties>
    <dependencies>
-	  
 <dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-picocontainer</artifactId>
