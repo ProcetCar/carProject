@@ -27,9 +27,10 @@ public void when_chose_view_order() {
             199.99,
             "Electronics",
             "available",r));;
+           int i= om.count(request);
     Date currentDate = new Date();
       order=new Order(orderid,customerid,productlist,email,currentDate,city,street,"pending",2);
-     request.add(order);
+     request.add(i, order);
       
 }
 
