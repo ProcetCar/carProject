@@ -13,6 +13,7 @@ public class Addproductsteps {
 	private static  List<Product> productlist=Mydata.listProduct();
 	private static ProductMethods pc=new ProductMethods();
 	  String productName;
+	  int i=0;
 	@Given("the admin is logged in and has access to the system")
 	public void the_admin_is_logged_in_and_has_access_to_the_system() {
 	    
@@ -27,11 +28,11 @@ public class Addproductsteps {
 	            String price = row.get("Price");
 	            String category = row.get("category");
 	            String available = row.get("available");
-	           int i= pc.countProducts(productlist);
+	            i= pc.countProducts(productlist);
 	           String s="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
          Product p=new Product(i,productName,description,Double.valueOf(price),category,available,s);
      		productlist.add(p);
-
+pc.addproducts(productlist, s, description, i, category, available);
 	           
 	        }
 	}
@@ -39,6 +40,8 @@ public class Addproductsteps {
 	@Then("the product should be added")
 	public void the_product_should_be_added() {
 		boolean g=pc.isexsist(productlist,productName);
+		pc.searchproduct(productlist,i );
+		pc.searchproductname(productlist, productName);
 	     Assert.assertTrue(g);
 	   pc.printproducts(productlist);
 	}
