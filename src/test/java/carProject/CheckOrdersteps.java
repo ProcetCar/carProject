@@ -72,6 +72,10 @@ private static  OrderedMethods om=new OrderedMethods();
 		order=om.changeStatus(order,false); 
 		  Assert.assertEquals(order.getOrderStatus(), string);
 			om.vieworder(request);
+			om.checkRequest(request);
+		     Date currentDate = new Date();
+			om.setDate(request, 2, currentDate);
+			String email2=om.getEmailForOrder(request, 2);
 
 	}
 }
