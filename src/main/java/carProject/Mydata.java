@@ -7,13 +7,7 @@ public class Mydata {
 	public static   List<User> userList=new ArrayList<User>();
 	 public static List<Product> products = new ArrayList<Product>();
 
- 	public  List<User> getUserList() {
-		return userList;
-	}
-
-	public  void setUserList(List<User> userList) {
-		Mydata.userList = userList;
-	}
+ 	
 
 
 
