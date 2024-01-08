@@ -42,6 +42,7 @@ public class loginsteps {
 
 	@Then("A login succeded message should appear")
 	public void a_login_succeded_message_should_appear() {
+		lo.navigateToLoginPage(Email,Password,userlist);
 		System.out.println("login successfully as customer");
 		Assert.assertTrue(lo.performLogin(Email, Password,userlist));
 
