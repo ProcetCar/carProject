@@ -83,7 +83,7 @@ return order;
         for (Order request : requests) {
             if (request.getCustomerid() == id_customer) {
                 LOGGER.info("=====================================================");
-                LOGGER.info("id:" + request.getOrderId());
+                LOGGER.info("id:" + request.getOrderid());
                 for (Product product : request.getOrderedProducts()) {
                     LOGGER.info("Name: " + product.getName());
                 }
