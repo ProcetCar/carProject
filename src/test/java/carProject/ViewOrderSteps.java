@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 public class ViewOrderSteps {
 Order order=new Order();
 List<Order> request=new ArrayList<Order>();
+private static  OrderedMethods om=new OrderedMethods();
 
 @When("when chose view order")
 public void when_chose_view_order() {
@@ -34,7 +35,7 @@ public void when_chose_view_order() {
 
 @Then("print  orders")
 public void print_orders() {
-OrderedMethods.vieworder(request);
+om.vieworder(request);
 
   
 }
