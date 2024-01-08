@@ -23,7 +23,8 @@ public class InstallationRequestsSteps {
     Product product=new Product();
     boolean available=false;
 	private static  OrderedMethods om=new OrderedMethods();
-
+	 private static  List<User> userList=Mydata.listUser();
+int id=0;
 	@Given("the customer wants to request installation services")
 	public void the_customer_wants_to_request_installation_services() {
 	   
@@ -43,6 +44,7 @@ public class InstallationRequestsSteps {
            Date currentDate = new Date();
            order=new Order(orderid,customerid,ProductsInchart,email,currentDate,city,street,"PENDING",2);
             request.add(order);
+            id= um.id_installer(userList, "2-3");
        }	
 
 	    
