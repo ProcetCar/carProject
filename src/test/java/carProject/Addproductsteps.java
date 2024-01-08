@@ -33,7 +33,6 @@ public class Addproductsteps {
          Product p=new Product(i,productName,description,Double.valueOf(price),category,available,s);
      		productlist.add(p);
 pc.addproducts(productlist, s, description, i, category, available);
-	           pc.openimage(s);
 	        }
 	}
 
