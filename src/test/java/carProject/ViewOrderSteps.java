@@ -35,7 +35,7 @@ public void when_chose_view_order() {
 
 @Then("print  orders")
 public void print_orders() {
-om.vieworder(request);
+om.vieworder(request,1);
 
   
 }
