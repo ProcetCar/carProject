@@ -1,14 +1,13 @@
 package carProject;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 public class OrderedMethods {
-    private static final Logger LOGGER = Logger.getLogger(OrderedMethods.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(OrderedMethods.class);
 
-	public static int countorder(List<Product> orderedProducts) {
+	public  int countorder(List<Product> orderedProducts) {
 		int i=0;
 		for(Product prduct: orderedProducts) {
 			i++;
@@ -16,7 +15,7 @@ public class OrderedMethods {
 		return i+1;
 	}
 	
-	public static double searchorder(String productpurchase, List<Product> orderedProducts) {
+	public  double searchorder(String productpurchase, List<Product> orderedProducts) {
             for (Product product:orderedProducts) {
 	             if(product.getName().equals(productpurchase)) {
 	            	 return product.getPrice();
@@ -24,7 +23,7 @@ public class OrderedMethods {
                       }
 		return 0;
 	}
-	public static boolean ifAvailable(Order order) {
+	public  boolean ifAvailable(Order order) {
      UserMethods um=new UserMethods() ;
 	     List<Product> products=order.getOrderedProducts();
 	     List<User> Allusers=Mydata.listUser();
@@ -42,7 +41,7 @@ public class OrderedMethods {
 
 	}
 
-	public static Order changeStatus(Order order, boolean available) {
+	public  Order changeStatus(Order order, boolean available) {
 if(available) {
 	order.setOrderStatus("coniformed");
 }
@@ -52,7 +51,7 @@ else {
 }
 return order;
 	}
-	public static int count(List<Order> requests) {
+	public  int count(List<Order> requests) {
 		int count=1;
 		
 		 for (Order request : requests) {
@@ -64,7 +63,7 @@ return order;
 	
 	}
 
-	public static String message(boolean f) {
+	public  String message(boolean f) {
 		String s="";
 		if(f) {
 			s="order is coniformed";
@@ -77,7 +76,7 @@ return order;
 		return s;
 
 	}
-    public static void vieworder(List<Order> requests, int id_customer) {
+    public  void vieworder(List<Order> requests, int id_customer) {
         ProductMethods pm = new ProductMethods();
 
         for (Order request : requests) {
@@ -97,7 +96,7 @@ return order;
 
 	
 	
-public static void vieworder(List<Order> requests) {
+public  void vieworder(List<Order> requests) {
         ProductMethods pm = new ProductMethods();
 
         for (Order request : requests) {
@@ -117,13 +116,13 @@ public static void vieworder(List<Order> requests) {
         }
     }
 
-	public static List<Order> checkRequest(List<Order> requests) {
+	public  List<Order> checkRequest(List<Order> requests) {
 		String status="";
 		 for (Order request : requests) {
 	
-				boolean f=OrderedMethods.ifAvailable(request);
-				  request=OrderedMethods.changeStatus(request,f);
-			 	 status=OrderedMethods.message(f);
+				boolean f=ifAvailable(request);
+				  request=changeStatus(request,f);
+			 	 status=message(f);
 			  SendMail.getSendEmail(status, request.getEmail()); 
 
 			   }
@@ -134,7 +133,7 @@ public static void vieworder(List<Order> requests) {
 	
 	}
 
-	public static List<Order> setDate(List<Order> requests, int j, Date date) {
+	public  List<Order> setDate(List<Order> requests, int j, Date date) {
 		 for (Order request : requests) {
 			 if(request.getOrderid()==j) {
 				 request.setDate(date);
@@ -144,7 +143,7 @@ public static void vieworder(List<Order> requests) {
 		return requests;
 	}
 
-	public static String getEmailForOrder(List<Order> requests, int j) {
+	public  String getEmailForOrder(List<Order> requests, int j) {
 String email="";
 for (Order request : requests) {
 	if(request.getOrderid()==j) {
