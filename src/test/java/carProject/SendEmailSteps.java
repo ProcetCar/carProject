@@ -10,6 +10,8 @@ import org.junit.Assert;
 
 public class SendEmailSteps {
 	 Order order=new Order();
+	 private static  OrderedMethods om=new OrderedMethods();
+
 
 @When("order is complete")
 public void order_is_complete() {
@@ -35,7 +37,7 @@ public void order_is_complete() {
 
 @Then("Send email")
 public void send_email() {
-boolean f=OrderedMethods.ifAvailable(order);
+boolean f=om.ifAvailable(order);
 if(f) {
 SendMail.getSendEmail("order is complete", "sheehasamah6@gmail.com"); 
 
@@ -70,7 +72,7 @@ String r="C:\\Users\\SYSCOM/Desktop/carImages/4.jpg";
 
 @Then("Send email order not complete")
 public void send_email_order_not_complete() {
-	boolean f=OrderedMethods.ifAvailable(order);
+	boolean f=om.ifAvailable(order);
 	if(!f) {
 	SendMail.getSendEmail("order not complete", "sheehasamah6@gmail.com"); 
 
@@ -81,3 +83,4 @@ public void send_email_order_not_complete() {
 
 
 }
+
