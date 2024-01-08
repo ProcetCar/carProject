@@ -20,6 +20,7 @@ public class CustomerRolesteps {
 	private static  List<Product> productlist=Mydata.listProduct();
 	List<Product> productlist2,productlist3;
 	private static User user=new User();
+	private static  OrderedMethods om=new OrderedMethods();
 
 	private static Order order=new Order();
 
@@ -146,13 +147,13 @@ public void they_click_on_the_or_button(String string, String string2) {
 public void they_should_be_able_to_make_a_purchase() {
 
 	
-	int i=OrderedMethods.countorder(orderedProducts);
+	int i=om.countorder(orderedProducts);
 	Product e =new Product() ;
 	e=pc.informationProduct(productlist, 1);
 		orderedProducts.add(e);
                
 
-		double price=OrderedMethods.searchorder(productpurchase,orderedProducts);
+		double price=om.searchorder(productpurchase,orderedProducts);
 		String s=String.valueOf(price);
 	Assert.assertEquals(s,"49.99");
 		
