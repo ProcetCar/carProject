@@ -22,6 +22,8 @@ public class InstallationRequestsSteps {
 	private static  ProductMethods pm=new ProductMethods() ;
     Product product=new Product();
     boolean available=false;
+	private static  OrderedMethods om=new OrderedMethods();
+
 	@Given("the customer wants to request installation services")
 	public void the_customer_wants_to_request_installation_services() {
 	   
@@ -49,7 +51,7 @@ public class InstallationRequestsSteps {
 	@Then("the request should be submitted successfully")
 	public void the_request_should_be_submitted_successfully() {
 		orderdproduct.add(order);
-		OrderedMethods.vieworder(request);
+		om.vieworder(request);
 
 	   
 	}
@@ -61,8 +63,8 @@ public class InstallationRequestsSteps {
 
 	@When("they review the installation requests")
 	public void they_review_the_installation_requests() {
-	    available=OrderedMethods.ifAvailable(order);
-	    order=OrderedMethods.changeStatus(order,available);
+	    available=om.ifAvailable(order);
+	    order=om.changeStatus(order,available);
 	    
 		
 	}
@@ -96,8 +98,8 @@ public class InstallationRequestsSteps {
 	           ProductsInchart.add(product); 
 	           Date currentDate = new Date();
 	           order=new Order(orderid,customerid,ProductsInchart,email,currentDate,city,street,"PENDING",2);
-	           available=OrderedMethods.ifAvailable(order);
-	   	      order=OrderedMethods.changeStatus(order,available);
+	           available=om.ifAvailable(order);
+	   	      order=om.changeStatus(order,available);
 	       }
 	}
 
