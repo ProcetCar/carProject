@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 
@@ -20,23 +20,26 @@ public class Main {
 	  private static  List<User> userList=Mydata.listUser();
 	  private static  ProductMethods pm=new ProductMethods() ;
 	  private static  UserMethods um=new UserMethods() ;
-
+	  private static  OrderedMethods om=new OrderedMethods();
 	private static  List<Product> productlist=Mydata.listProduct();
     private static List<Product> orderedProducts=new ArrayList<>();
     private static List<Order> request=new ArrayList<>();
 
 	private static User user=new User();
      private static Product product =new Product ();
-	 static Logger logger =  Logger.getLogger(Main.class.getName());
+	 static Logger logger =  LogManager.getLogger(Main.class);
+	 
 private static final String SEPARATOR = "===============================================================";
 
 
-public static void print1(){
+public static void print1(int flag){
     
   			
-                                            	logger.info("Navigating to the product page...");
+                    logger.info("Navigating to the product page...");
 					logger.info("            === product page ===");
+					if(flag==1) {
 					pm.printproducts(productlist);
+					}
 					logger.info("Please select an option:");
 					logger.info("1. To view a specific product");
 					logger.info("2. go to home page");
@@ -50,7 +53,7 @@ public static void print1(){
        				         int y=scanner.nextInt();
        				        boolean m=pm.searchproduct(productlist, y);
             				logger.info(SEPARATOR);
-
+                          
       logger.info("Please select an option:");
 					logger.info("1. add to my chart");
 					logger.info("2. go to home page");
@@ -86,25 +89,28 @@ public static void print1(){
 							        	logger.info("email: ");
 									   String Email=scanner.nextLine();
 									    Email=scanner.nextLine();
+									    while(!login.ifvalid(Email)) {
+							 		    	 logger.info("email: ");
+							 		    	Email=scanner.nextLine(); 
+							 		     }
 									   logger.info("city: ");
 									   String city=scanner.nextLine();
 									   logger.info("street: ");
 									   String street=scanner.nextLine();
 									   Date date=new Date();
-									   int id2= OrderedMethods.count(request);
+									   int id2= om.count(request);
 					  				  logger.info("chose time: 1-2 , 2-3 , 3-4");
 					  				logger.info("Time: ");
 									   String Time=scanner.nextLine();
-									    Time=scanner.nextLine();
 									   int installer=um.id_installer(userList,Time);
 									  Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 									  
 									  request.add(order);
 									 
 									  String status="order is "+order.getOrderStatus();
-									  SendMail.getSendEmail(status, user.getEmail()); 
-									  logger.info("Your request has been sent. We will contact you ");
+									  SendMail.getSendEmail(status, Email); 
 							        	logger.info(SEPARATOR);
+										orderedProducts=new ArrayList<>();
 
 							        } 
   				         }
@@ -187,7 +193,7 @@ public static void print1(){
 			     int d=scanner.nextInt();
 				if(d==1) {
 				
-                               print1();
+                               print1(1);
 					
 				}
 				if(d==2){
@@ -216,7 +222,7 @@ public static void print1(){
 				        	pm.viewproductCategory(productlist, "Exterior");
 
 				        }
-			             print1();
+			             print1(2);
 		        }
 
 				        
@@ -271,25 +277,28 @@ public static void print1(){
 								        	logger.info("email: ");
 										   String Email=scanner.nextLine();
 										    Email=scanner.nextLine();
+										    while(!login.ifvalid(Email)) {
+								 		    	 logger.info("email: ");
+								 		    	Email=scanner.nextLine(); 
+								 		     }
 										   logger.info("city: ");
 										   String city=scanner.nextLine();
 										   logger.info("street: ");
 										   String street=scanner.nextLine();
 										   Date date=new Date();
-										   int id2= OrderedMethods.count(request) ;
+										   int id2= om.count(request) ;
 										   logger.info("chose time: 1-2 , 2-3 , 3-4");
 							  				logger.info("Time: ");
 											   String Time=scanner.nextLine();
-											    Time=scanner.nextLine();
 											   int installer=um.id_installer(userList,Time);
 											   Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 										  request.add(order);
 										 
 										  String status="order is "+order.getOrderStatus();
-										  SendMail.getSendEmail(status, user.getEmail()); 
-										  logger.info("Your request has been sent. We will contact you ");
+										  SendMail.getSendEmail(status, Email); 
 								        	logger.info(SEPARATOR);
-      
+											orderedProducts=new ArrayList<>();
+
 								        }
 								        	
 								       
@@ -299,12 +308,16 @@ public static void print1(){
 					
 					 
 					 }
+			        	logger.info("the product doesn't exsist..");
+
 	    		logger.info(SEPARATOR);
 
 					}
 				
 				
                 if(d==4) {
+                	boolean edit=true;
+                	while(edit) {
                 	user=um.informationUser(userList, email);
                 	um.searchuser(userList, user.getName());
                 	logger.info("Navigating to the profile page...");
@@ -316,8 +329,11 @@ public static void print1(){
     				logger.info("3. edit email");
     				logger.info("4. edit age");
     				logger.info("5. logout");
+    				logger.info("6. go to homepage");
+
 
     				logger.info(SEPARATOR);
+                	
 
     				 scanner=new Scanner(System.in);
     				int c=scanner.nextInt();
@@ -361,14 +377,20 @@ public static void print1(){
 		logger.info(SEPARATOR);
                     	   logger.info( "you logout successfully");
 		logger.info(SEPARATOR);
+ 	                     edit=false;
                          islogin=false;
                 	
                 }
+                       if(c==6) {
+                    	   edit=false;
+                       }
+                	}
+                       
 
 
 			}
                if(d==5) {
-            	   OrderedMethods.vieworder(request,user.getid());
+            	   om.vieworder(request,user.getid());
                }
                if( d==6){
 		logger.info(SEPARATOR);
@@ -397,6 +419,8 @@ public static void print1(){
 				 scanner=new Scanner(System.in);
  				int c=scanner.nextInt();
  				if(c==1) {
+ 					boolean products=true;
+ 					while(products) {
  					pm.printproducts(productlist);
 		logger.info(SEPARATOR);
  					logger.info("Navigating to the product page...");
@@ -500,10 +524,15 @@ public static void print1(){
          	 				int l=scanner.nextInt(); 
          	 				pm.searchproduct(productlist, l);
                       }
-
+                    if(k==6) {
+                    	products=false;
+                    }
+ 				}
 
  				}
  				if(c==2) {
+ 					boolean users=true;
+ 					while(users) {
 		logger.info(SEPARATOR);
  					logger.info("Navigating to the Users page...");
  					logger.info("            === Users page ===");
@@ -556,9 +585,16 @@ public static void print1(){
    		          um.searchuser(userList,username);
    		          
    	 				}
+   	 				if(l==5) {
+   	 					users=false;
+   	 				}
+ 				}
  				}
  				
  				if(c==3) {
+ 					boolean orders=true;
+ 					while(orders) {
+ 					
 		logger.info(SEPARATOR);
  					logger.info(" === request orders page ===");
  					logger.info("Please select an option:");
@@ -570,16 +606,16 @@ public static void print1(){
  					  scanner=new Scanner(System.in);
    	 				int m=scanner.nextInt(); 
    	 				if(m==1) {
- 					 OrderedMethods.vieworder(request);
+ 					 om.vieworder(request);
    	 				}
    	 				if(m==2) {
-   	 				request=OrderedMethods.checkRequest(request); 
-					 OrderedMethods.vieworder(request);
+   	 				request=om.checkRequest(request); 
+					 om.vieworder(request);
    	 				}
    	 				if(m==3) {
    	 				logger.info(SEPARATOR);
 					logger.info("            === schedule appointments page ===");
-					 OrderedMethods.vieworder(request);
+					 om.vieworder(request);
 					 logger.info("enter id order you want to schedule appointments :");
 					 scanner=new Scanner(System.in);
 				     int j=scanner.nextInt();
@@ -591,20 +627,23 @@ public static void print1(){
 							Date Date=new Date();
 					        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 							Date= dateFormat.parse(userInput);
-							  request=OrderedMethods.setDate(request,j,Date);
+							  request=om.setDate(request,j,Date);
 						        logger.info("Installation date updated");
 						        String date=dateFormat.format(Date);
-                                String EMail=OrderedMethods.getEmailForOrder(request,j);
+                                String EMail=om.getEmailForOrder(request,j);
 								 SendMail.getSendEmail("The product you ordered will be installed on the date: "+date,EMail); 
-       						    OrderedMethods.vieworder(request);
+       						    om.vieworder(request);
 
 						} catch (Exception e) {
 							        logger.info("Error parsing date:");
 						}
                   
    	 				}
+   	 				if(m==4) {
+   	 					orders=false;
+   	 				}
    	 				
- 					
+ 				}
  				}
  				if(c==4) {
  					logger.info("you logout successfully");
@@ -633,22 +672,22 @@ public static void print1(){
 				     int d=scanner.nextInt();
 				     if(d==1) {
 				    
-				 OrderedMethods.vieworder(request);
+				 om.vieworder(request);
 				 logger.info("do you want to cheak orders");
 					logger.info("1. Yes");
 					logger.info("2. No");
 					scanner=new Scanner(System.in);
 				     int v=scanner.nextInt();
 				     if(v==1) {
-				    	 request=OrderedMethods.checkRequest(request); 
-						 OrderedMethods.vieworder(request);
+				    	 request=om.checkRequest(request); 
+						 om.vieworder(request);
 
 				     }
 				}
 				     if(d==2) {
 							logger.info(SEPARATOR);
 							logger.info("            === schedule appointments page ===");
-							 OrderedMethods.vieworder(request);
+							 om.vieworder(request);
 							 logger.info("enter id order you want to schedule appointments :");
 							 scanner=new Scanner(System.in);
 						     int j=scanner.nextInt();
@@ -660,12 +699,12 @@ public static void print1(){
 									Date Date=new Date();
 							        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 									Date= dateFormat.parse(userInput);
-									  request=OrderedMethods.setDate(request,j,Date);
+									  request=om.setDate(request,j,Date);
 								        logger.info("Installation date updated");
 								        String date=dateFormat.format(Date);
-		                                String EMail=OrderedMethods.getEmailForOrder(request,j);
+		                                String EMail=om.getEmailForOrder(request,j);
 										 SendMail.getSendEmail("The product you ordered will be installed on the date: "+date,EMail); 
-		       						    OrderedMethods.vieworder(request);
+		       						    om.vieworder(request);
 
 								} catch (Exception e) {
 							        logger.info("Error parsing date:");
@@ -707,7 +746,7 @@ public static void print1(){
 			notexit=false;
 		}
 }
-       
+  
        }
        
 	
