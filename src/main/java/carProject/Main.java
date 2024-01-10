@@ -51,12 +51,11 @@ public static void print1(int flag){
           					logger.info("enter the product number");
           					scanner=new Scanner(System.in);
        				         int y=scanner.nextInt();
-       				        boolean m=pm.searchproduct(productlist, y);
             				logger.info(SEPARATOR);
                           
-      logger.info("Please select an option:");
+      logger.info("- select an option:-");
 					logger.info("1. add to my chart");
-					logger.info("2. go to home page");
+					logger.info("2. Back to Home page");
                                             logger.info(SEPARATOR);
      					scanner=new Scanner(System.in);
   				        int b =scanner.nextInt();
@@ -71,8 +70,8 @@ public static void print1(int flag){
   				        	user.setOrderedProducts(orderedProducts);
   				        	pm.countProducts(orderedProducts);
   				        	double total=pm.totalprice(orderedProducts);
-  				        	logger.info("Product price= "+product.getPrice());
-				        	logger.info("Total= "+total);  		    		
+  				        	  
+				        	print2(product.getPrice(),total);
 				        	logger.info(SEPARATOR);
 				        	logger.info(SEPARATOR);
 				        	 logger.info("Please select an option:");
@@ -90,7 +89,7 @@ public static void print1(int flag){
 									   String Email4=getNextLine(scanner);
 									    Email4=getNextLine(scanner);
 									    while(!login.ifvalid(Email4)) {
-							 		    	 logger.info("email: ");
+							 		    	 logger.info("Email : ");
 							 		    	Email4=getNextLine(scanner); 
 							 		     }
 									   logger.info("city: ");
@@ -258,8 +257,8 @@ public static void print1(int flag){
 				        	orderedProducts.add(product);
 				        	pm.countProducts(orderedProducts);
 				        	double total=pm.totalprice(orderedProducts);
-				        	logger.info("product Price = "+product.getPrice());
-				        	logger.info("total = "+total);
+				        	print2(product.getPrice(),total);
+
 		    				logger.info(SEPARATOR);
 				        			logger.info(SEPARATOR);
 
@@ -377,7 +376,7 @@ public static void print1(int flag){
                        }
                        if(c==5) {
 		logger.info(SEPARATOR);
-                    	   logger.info( "You Logout Successfully");
+                    	   logger.info( " Logout Successfully");
 		logger.info(SEPARATOR);
  	                     edit=false;
                          islogin=false;
@@ -803,6 +802,10 @@ public static void print1(int flag){
     private static String getNextLine(Scanner scanner) {
         return scanner.nextLine();
     }
+    private static void print2(double pricep ,double total) {
+    	logger.info("Product price= "+pricep);
+    	logger.info("Total= "+total);   
+    	}
 
 }
 
