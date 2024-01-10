@@ -11,6 +11,8 @@
           <sonar.organization>caracc-project-1</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.exclusions>**/carProject/Main.java</sonar.coverage.exclusions>
+      <sonar.cpd.exclusions>**/carProject/Main.java</sonar.cpd.exclusions>
+
     </properties>
    <dependencies>
 <dependency>
