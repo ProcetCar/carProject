@@ -40,9 +40,9 @@ public static void print1(int flag){
 					if(flag==1) {
 					pm.printproducts(productlist);
 					}
-					logger.info("Please select an option:");
+					logger.info(" select an option:");
 					logger.info("1. To view a specific product");
-					logger.info("2. go to home page");
+					logger.info("2. Go to Home Page");
     				logger.info(SEPARATOR);
 
               Scanner scanner = new Scanner(System.in);
@@ -71,8 +71,8 @@ public static void print1(int flag){
   				        	user.setOrderedProducts(orderedProducts);
   				        	pm.countProducts(orderedProducts);
   				        	double total=pm.totalprice(orderedProducts);
-  				        	logger.info("product Price= "+product.getPrice());
-				        	logger.info("total= "+total);  		    		
+  				        	logger.info("Product price= "+product.getPrice());
+				        	logger.info("Total= "+total);  		    		
 				        	logger.info(SEPARATOR);
 				        	logger.info(SEPARATOR);
 				        	 logger.info("Please select an option:");
@@ -86,23 +86,23 @@ public static void print1(int flag){
 							        	logger.info(SEPARATOR);
 
 					  				     logger.info("Please enter you email ,city ,street");
-							        	logger.info("email: ");
-									   String Email=scanner.nextLine();
-									    Email=scanner.nextLine();
+							        	logger.info(" email : ");
+									   String Email=getNextLine(scanner);
+									    Email=getNextLine(scanner);
 									    while(!login.ifvalid(Email)) {
 							 		    	 logger.info("email: ");
-							 		    	Email=scanner.nextLine(); 
+							 		    	Email=getNextLine(scanner); 
 							 		     }
 									   logger.info("city: ");
-									   String city=scanner.nextLine();
+									   String city=getNextLine(scanner);
 									   logger.info("street: ");
-									   String street=scanner.nextLine();
+									   String street=getNextLine(scanner);
 									   Date date=new Date();
 									   int id2= om.count(request);
 					  				  logger.info("chose time: 1-2 , 2-3 , 3-4");
 					  				logger.info("Time: ");
-									   String Time=scanner.nextLine();
-									   int installer=um.id_installer(userList,Time);
+									   String Time1=getNextLine(scanner);
+									   int installer=um.id_installer(userList,Time1);
 									  Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 									  
 									  request.add(order);
@@ -152,20 +152,20 @@ public static void print1(int flag){
 			logger.info(SEPARATOR);
 			
 			logger.info("Email: ");
-	 	    email=scanner.nextLine();
-	          email=scanner.nextLine();
+	 	    email=getNextLine(scanner);
+	          email=getNextLine(scanner);
 	          while(!login.ifvalid(email)) {
 	 		    	 logger.info("email: ");
-	 			     email=scanner.nextLine(); 
+	 			     email=getNextLine(scanner); 
 	 		     }
 	          logger.info("Password: ");
-		     password=scanner.nextLine();
+		     password=getNextLine(scanner);
 			login.navigateToLoginPage(email,password,userList);
 			while(!login.performLogin(email, password,userList)) {
 				logger.info("Email: ");
-		 	    email=scanner.nextLine();
+		 	    email=getNextLine(scanner);
 		          logger.info("Password: ");
-			     password=scanner.nextLine();
+			     password=getNextLine(scanner);
 			}
 			islogin=true;
 			user=um.informationUser(userList, email) ;
@@ -178,7 +178,7 @@ public static void print1(int flag){
 		logger.info(SEPARATOR);
 
 				logger.info("Navigating to the home page...");
-				logger.info("            === home page ===");
+				logger.info("            === Home page ===");
 				logger.info("Please select an option:");
 				logger.info("1. view all products");
 				logger.info("2. view products category");
@@ -236,7 +236,7 @@ public static void print1(int flag){
 
 					
 					scanner=new Scanner(System.in);
-					 String nameproduct=scanner.nextLine();	
+					 String nameproduct=getNextLine(scanner);	
 					 if(pm.isexsist(productlist, nameproduct)) {
 					int id= pm.searchproductname(productlist,nameproduct);
     				logger.info(SEPARATOR);
@@ -258,8 +258,8 @@ public static void print1(int flag){
 				        	orderedProducts.add(product);
 				        	pm.countProducts(orderedProducts);
 				        	double total=pm.totalprice(orderedProducts);
-				        	logger.info("product Price= "+product.getPrice());
-				        	logger.info("total= "+total);
+				        	logger.info("product Price = "+product.getPrice());
+				        	logger.info("total = "+total);
 		    				logger.info(SEPARATOR);
 				        			logger.info(SEPARATOR);
 
@@ -275,21 +275,21 @@ public static void print1(int flag){
 
 						  				     logger.info("Please enter you email ,city ,street");
 								        	logger.info("email: ");
-										   String Email=scanner.nextLine();
-										    Email=scanner.nextLine();
+										   String Email=getNextLine(scanner);
+										    Email=getNextLine(scanner);
 										    while(!login.ifvalid(Email)) {
 								 		    	 logger.info("email: ");
-								 		    	Email=scanner.nextLine(); 
+								 		    	Email=getNextLine(scanner); 
 								 		     }
 										   logger.info("city: ");
-										   String city=scanner.nextLine();
+										   String city=getNextLine(scanner);
 										   logger.info("street: ");
-										   String street=scanner.nextLine();
+										   String street=getNextLine(scanner);
 										   Date date=new Date();
 										   int id2= om.count(request) ;
 										   logger.info("chose time: 1-2 , 2-3 , 3-4");
 							  				logger.info("Time: ");
-											   String Time=scanner.nextLine();
+											   String Time=getNextLine(scanner);
 											   int installer=um.id_installer(userList,Time);
 											   Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
 										  request.add(order);
@@ -308,8 +308,10 @@ public static void print1(int flag){
 					
 					 
 					 }
-			        	logger.info("the product doesn't exsist..");
+					 else {
+						 logger.info("the product doesn't exsist..");
 
+					 }
 	    		logger.info(SEPARATOR);
 
 					}
@@ -339,8 +341,8 @@ public static void print1(int flag){
     				int c=scanner.nextInt();
                        if(c==1) {
            		       logger.info("new name: ");
-           		      name=scanner.nextLine();
-      	              name=scanner.nextLine();
+           		      name=getNextLine(scanner);
+      	              name=getNextLine(scanner);
                        user=um.informationUser(userList, email) ;  
                       userList= um.updateUser(userList,user.getid(),name,user.getEmail(), user.getPassword(), user.getAge(), user.gettype());
 
@@ -348,16 +350,16 @@ public static void print1(int flag){
                        if(c==2) {
                     	   
                		       logger.info("new password: ");
-               		      password=scanner.nextLine();
-          	              password=scanner.nextLine();
+               		      password=getNextLine(scanner);
+          	              password=getNextLine(scanner);
           	             
                            user=um.informationUser(userList, email) ;  
                           userList= um.updateUser(userList,user.getid(),user.getName(),user.getEmail(), password, user.getAge(), user.gettype());
                            }
                        if(c==3) {
                     	   logger.info("new email: ");
-                 		     String  email2=scanner.nextLine();
-            	              email2=scanner.nextLine();
+                 		     String  email2=getNextLine(scanner);
+            	              email2=getNextLine(scanner);
             	              if(login.ifvalid(email2)) {
                              user=um.informationUser(userList, email) ;  
                               email=email2;
@@ -367,15 +369,15 @@ public static void print1(int flag){
                        }
                        if(c==4) {
                     	   logger.info("new age: ");
-                 		     String age2=scanner.nextLine();
-            	              age2=scanner.nextLine();
+                 		     String age2=getNextLine(scanner);
+            	              age2=getNextLine(scanner);
                              user=um.informationUser(userList, email) ;  
                             userList= um.updateUser(userList,user.getid(),user.getName(),user.getEmail(), user.getPassword(),age2, user.gettype());
 
                        }
                        if(c==5) {
 		logger.info(SEPARATOR);
-                    	   logger.info( "you logout successfully");
+                    	   logger.info( "You Logout Successfully");
 		logger.info(SEPARATOR);
  	                     edit=false;
                          islogin=false;
@@ -416,6 +418,29 @@ public static void print1(int flag){
 
 		logger.info(SEPARATOR);
 
+		  List<User> userList2 = new ArrayList<>();
+		  boolean flag=false;
+		  			  for(User user : userList) {
+		  				  if(!userList2.isEmpty()) {
+		  				  for(User user2 : userList2) {
+		  					  if(user2.getid()==user.getid()) {
+		  						  flag=true;
+		  						  break;
+		  					  }
+		  					  
+		  				  }
+		  				  if(!flag) {
+		  					userList2.add(user) ;
+		  				  }
+		  					flag=false;
+
+		  				  }
+		  				  else {
+		  					 userList2.add(user) ;
+		  				  }
+		  				  
+		  			  }
+		  			userList=userList2;
 				 scanner=new Scanner(System.in);
  				int c=scanner.nextInt();
  				if(c==1) {
@@ -442,18 +467,33 @@ public static void print1(int flag){
 
            				logger.info("enter Product Name , description ,price , category , available about product");
            				logger.info("Product Name: ");
-           		 	    String productname=scanner.nextLine();
-           		 	     productname=scanner.nextLine();
+           		 	    String productname=getNextLine(scanner);
+           		 	     productname=getNextLine(scanner);
 
            		 	     logger.info("description: ");
-        	 	          String description=scanner.nextLine();
+        	 	          String description=getNextLine(scanner);
         	 	         logger.info("price: ");
-        	 	 	    String price=scanner.nextLine();
+        	 	 	    String price=getNextLine(scanner);
         	 	 	    double price2=Double.valueOf(price);
-        	 	 	  logger.info("category: ");
-        		 	    String category=scanner.nextLine();
-        		 	   logger.info("available: ");
-        		 	    String available=scanner.nextLine();
+        	 	 	  logger.info("choose category: ");
+         				logger.info("1. Exterior");
+         				logger.info("2. Interior");
+         				logger.info("3. Electronics");
+    	 				int v=scanner.nextInt(); 
+        		 	    String category="";
+
+       if(v==1) {
+    	   category= "Exterior";
+       }
+       else if(v==2) {
+    	   category= "Interior";
+
+       }
+       else if(v==3) {
+    	   category= "Electronics";
+
+       }
+        		 	    String available="available";
         		 	  int id=  pm.countProducts(productlist);
         		 	   productlist=pm.addproducts(productlist,productname,description,price2,category,available);
 
@@ -466,8 +506,8 @@ public static void print1(int flag){
                        }
                        else if(k==3) {
                     	   logger.info("enter product name: ");
-         	 	          String productname=scanner.nextLine();
-         	 	        productname=scanner.nextLine();
+         	 	          String productname=getNextLine(scanner);
+         	 	        productname=getNextLine(scanner);
          	 	          pm.searchproductname(productlist, productname);
          	 	       
                        }
@@ -485,22 +525,22 @@ public static void print1(int flag){
   	 				     int f=scanner.nextInt();
          	 				if(f==1) {
          	 				  logger.info("enter new name: ");
-         	 			         name=scanner.nextLine();
-         	 			         name=scanner.nextLine();
+         	 			         name=getNextLine(scanner);
+         	 			         name=getNextLine(scanner);
          	 					product=pm.informationProduct(productlist, o);
          	 					productlist=pm.updateproducts(productlist,product.getid() ,name, product.getDescription(), product.getPrice(), product.getCategory(), product.getAvailable());
          	 				}
          	 				if(f==2) {
          	 					 logger.info("enter new description: ");
-         	 			     String description=scanner.nextLine();
-         	 			         description=scanner.nextLine();
+         	 			     String description=getNextLine(scanner);
+         	 			         description=getNextLine(scanner);
          	 					product=pm.informationProduct(productlist, o);
          	 					productlist=pm.updateproducts(productlist,product.getid() ,product.getName(), description, product.getPrice(), product.getCategory(), product.getAvailable());
          	 				}
          	 				if(f==3) {
          	 					 logger.info("enter new price: ");
-             	 			     String price=scanner.nextLine();
-             	 			         price=scanner.nextLine();
+             	 			     String price=getNextLine(scanner);
+             	 			         price=getNextLine(scanner);
              	 			         double price3=Double.valueOf(price);
              	 					product=pm.informationProduct(productlist, o);
              	 					productlist=pm.updateproducts(productlist,product.getid() ,product.getName(), product.getDescription(),price3, product.getCategory(), product.getAvailable());
@@ -508,8 +548,8 @@ public static void print1(int flag){
          	 				}
          	 				if(f==4) {
          	 					 logger.info("enter if available or not : ");
-             	 			     String available=scanner.nextLine();
-             	 			          available=scanner.nextLine();
+             	 			     String available=getNextLine(scanner);
+             	 			          available=getNextLine(scanner);
              	 					product=pm.informationProduct(productlist, o);
              	 					productlist=pm.updateproducts(productlist,product.getid() ,product.getName(), product.getDescription(),product.getPrice(), product.getCategory(), available);
              	 				
@@ -553,19 +593,21 @@ public static void print1(int flag){
    	 				if(l==2) {
    	 				logger.info("- Please enter  username and email and password and age :");
    	 			logger.info("username: ");
-   	 	 	    String username=scanner.nextLine();
-   	 	          username=scanner.nextLine();
+   	 	 	    String username=getNextLine(scanner);
+   	 	          username=getNextLine(scanner);
    	 	          logger.info("email: ");
-   	 		    String email2=scanner.nextLine();
+   	 		    String email2=getNextLine(scanner);
    	 		     while(!login.ifvalid(email2)) {
    	 		    	 logger.info("email: ");
-   	 			     email2=scanner.nextLine(); 
+   	 			     email2=getNextLine(scanner); 
    	 		     }
    	 		    logger.info("password: ");
-   	 		     password=scanner.nextLine();
+   	 		     password=getNextLine(scanner);
    	 		    logger.info("age: ");
-   	 		     age=scanner.nextLine();
+   	 		     age=getNextLine(scanner);
    	 	  userList= um.add(username, password, email2, age,userList);	
+				um.printUsers(userList);
+
 		logger.info(SEPARATOR);
 
    	 				}
@@ -575,13 +617,17 @@ public static void print1(int flag){
               	   scanner=new Scanner(System.in);
   	 				int e=scanner.nextInt(); 
    	 					userList=um.deleteuser(userList, e);
+   	 					um.printUsers(userList);
+  	 				
+  	 				
+
 		logger.info(SEPARATOR);
 
    	 				}
    	 				if(l==4) {
    	   	 		  logger.info("enter  username: ");
-   	 			 String username=scanner.nextLine();
-   		          username=scanner.nextLine();
+   	 			 String username=getNextLine(scanner);
+   		          username=getNextLine(scanner);
    		          um.searchuser(userList,username);
    		          
    	 				}
@@ -619,19 +665,20 @@ public static void print1(int flag){
 					 logger.info("enter id order you want to schedule appointments :");
 					 scanner=new Scanner(System.in);
 				     int j=scanner.nextInt();
-				        logger.info("Enter the date (yyyy-MM-dd HH:mm)");
-				        String userInput = scanner.nextLine();
-				         userInput = scanner.nextLine();
+				        logger.info("Enter the date (yyyy-MM-dd)");
+				        String userInput = getNextLine(scanner);
+				         userInput = getNextLine(scanner);
 
 						try {
-							Date Date=new Date();
-					        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-							Date= dateFormat.parse(userInput);
-							  request=om.setDate(request,j,Date);
+							Date Date1=new Date();
+					        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+							Date1= dateFormat.parse(userInput);
+							Date1.setHours(2);
+							  request=om.setDate(request,j,Date1);
 						        logger.info("Installation date updated");
-						        String date=dateFormat.format(Date);
-                                String EMail=om.getEmailForOrder(request,j);
-								 SendMail.getSendEmail("The product you ordered will be installed on the date: "+date,EMail); 
+						        String date=dateFormat.format(Date1);
+                                String EMail1=om.getEmailForOrder(request,j);
+								 SendMail.getSendEmail("The product you ordered will be installed on the date: "+date,EMail1); 
        						    om.vieworder(request);
 
 						} catch (Exception e) {
@@ -691,14 +738,15 @@ public static void print1(int flag){
 							 logger.info("enter id order you want to schedule appointments :");
 							 scanner=new Scanner(System.in);
 						     int j=scanner.nextInt();
-						        logger.info("Enter the date (yyyy-MM-dd HH:mm)");
-						        String userInput = scanner.nextLine();
-						         userInput = scanner.nextLine();
+						        logger.info("Enter the date (yyyy-MM-dd)");
+						        String userInput = getNextLine(scanner);
+						         userInput = getNextLine(scanner);
 
 								try {
 									Date Date=new Date();
-							        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+							        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 									Date= dateFormat.parse(userInput);
+									Date.setHours(2);
 									  request=om.setDate(request,j,Date);
 								        logger.info("Installation date updated");
 								        String date=dateFormat.format(Date);
@@ -728,18 +776,18 @@ public static void print1(int flag){
 			logger.info("            === signup Page ===");
 			logger.info("- Please enter your username and email and password and age :");
 			logger.info("username: ");
-	 	    String username=scanner.nextLine();
-	          username=scanner.nextLine();
+	 	    String username=getNextLine(scanner);
+	          username=getNextLine(scanner);
 	          logger.info("email: ");
-		     email=scanner.nextLine();
+		     email=getNextLine(scanner);
 		     while(!login.ifvalid(email)) {
 		    	 logger.info("email: ");
-			     email=scanner.nextLine(); 
+			     email=getNextLine(scanner); 
 		     }
 		    logger.info("password: ");
-		     password=scanner.nextLine();
+		     password=getNextLine(scanner);
 		    logger.info("age: ");
-		     age=scanner.nextLine();
+		     age=getNextLine(scanner);
 	  userList= um.add(username, password, email, age,userList);	  
 	}
        if(p==3) {
@@ -750,4 +798,10 @@ public static void print1(int flag){
        }
        
 	
+
+	
+    private static String getNextLine(Scanner scanner) {
+        return scanner.nextLine();
+    }
+
 }
