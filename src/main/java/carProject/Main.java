@@ -87,11 +87,11 @@ public static void print1(int flag){
 
 					  				     logger.info("Please enter you email ,city ,street");
 							        	logger.info(" email : ");
-									   String Email=getNextLine(scanner);
-									    Email=getNextLine(scanner);
-									    while(!login.ifvalid(Email)) {
+									   String Email4=getNextLine(scanner);
+									    Email4=getNextLine(scanner);
+									    while(!login.ifvalid(Email4)) {
 							 		    	 logger.info("email: ");
-							 		    	Email=getNextLine(scanner); 
+							 		    	Email4=getNextLine(scanner); 
 							 		     }
 									   logger.info("city: ");
 									   String city=getNextLine(scanner);
@@ -103,12 +103,12 @@ public static void print1(int flag){
 					  				logger.info("Time: ");
 									   String Time1=getNextLine(scanner);
 									   int installer=um.id_installer(userList,Time1);
-									  Order order=new Order(id2,user.getid(),orderedProducts,Email,date,city,street,"pending",installer);
+									  Order order=new Order(id2,user.getid(),orderedProducts,Email4,date,city,street,"pending",installer);
 									  
 									  request.add(order);
 									 
 									  String status="order is "+order.getOrderStatus();
-									  SendMail.getSendEmail(status, Email); 
+									  SendMail.getSendEmail(status, Email4); 
 							        	logger.info(SEPARATOR);
 										orderedProducts=new ArrayList<>();
 
@@ -805,3 +805,4 @@ public static void print1(int flag){
     }
 
 }
+
